@@ -21,7 +21,7 @@ A fully-featured e-commerce shopping assistant using **Lua Platform APIs** for p
 ### src/index.ts
 
 ```typescript
-import { LuaSkill } from "lua-cli";
+import { LuaAgent, LuaSkill } from "lua-cli";
 import {
   SearchProductsTool,
   GetProductDetailsTool,
@@ -32,6 +32,7 @@ import {
   TrackOrderTool
 } from "./tools/EcommerceTool";
 
+// Create shopping skill
 const ecommerceSkill = new LuaSkill({
   name: "ecommerce-assistant",
   version: "1.0.0",
@@ -64,7 +65,47 @@ const ecommerceSkill = new LuaSkill({
     new TrackOrderTool()
   ]
 });
+
+// Configure agent (v3.0.0)
+export const agent = new LuaAgent({
+  name: "ecommerce-shopping-assistant",
+  
+  persona: `You are a friendly and helpful shopping assistant for our online store.
+  
+Your role:
+- Help customers find products they're looking for
+- Provide detailed product information
+- Assist with adding items to cart
+- Guide through the checkout process
+- Help track orders after purchase
+
+Communication style:
+- Warm and welcoming
+- Enthusiastic about products
+- Patient and helpful
+- Clear about pricing and availability
+- Proactive with suggestions
+
+Best practices:
+- Always confirm product details before adding to cart
+- Mention if items are in stock or out of stock
+- Show total price before checkout
+- Offer product recommendations based on browsing
+- Celebrate successful orders!
+
+When to escalate:
+- Complex shipping issues
+- Payment problems
+- Bulk orders (>20 items)
+- Special customization requests`,
+
+  welcomeMessage: "Welcome to our store! 🛍️ I'm here to help you find the perfect products. What are you looking for today?",
+  
+  skills: [ecommerceSkill]
+});
 ```
+
+> **Note:** This demo now uses the **v3.0.0 pattern** with `LuaAgent` to configure the agent's persona, welcome message, and skills in one unified structure.
 
 ### src/tools/EcommerceTool.ts
 

@@ -1,4 +1,4 @@
-import { LuaSkill } from "lua-cli";
+import { LuaAgent, LuaSkill } from "lua-cli";
 import {
   SearchProductsTool,
   GetProductDetailsTool,
@@ -9,6 +9,7 @@ import {
   TrackOrderTool
 } from "./tools/EcommerceTool";
 
+// Create shopping skill
 const ecommerceSkill = new LuaSkill({
   name: "ecommerce-assistant",
   version: "1.0.0",
@@ -42,36 +43,41 @@ const ecommerceSkill = new LuaSkill({
   ]
 });
 
-// Test cases for e-commerce skill
-const testCases = [
-    { tool: "search_products", query: "laptop", maxPrice: 1500 },
-    { tool: "search_products", query: "headphones" },
-];
+// Configure agent (v3.0.0)
+export const agent = new LuaAgent({
+  name: "Mira",
+  
+  persona: `You are a friendly and helpful shopping assistant for our online store.
+  
+Your role:
+- Help customers find products they're looking for
+- Provide detailed product information
+- Assist with adding items to cart
+- Guide through the checkout process
+- Help track orders after purchase
 
-async function runTests() {
-    console.log("🛍️  E-commerce Assistant - Running tests...\n");
+Communication style:
+- Warm and welcoming
+- Enthusiastic about products
+- Patient and helpful
+- Clear about pricing and availability
+- Proactive with suggestions
 
-    // Test search functionality
-    for (const [index, testCase] of testCases.entries()) {
-        try {
-            console.log(`Test ${index + 1}: ${testCase.tool}`);
-            const result = await ecommerceSkill.run(testCase);
-            console.log("✅ Success:", JSON.stringify(result, null, 2));
-        } catch (error: any) {
-            console.log("❌ Error:", error.message);
-        }
-        console.log(""); // Empty line for readability
-    }
-}
+Best practices:
+- Always confirm product details before adding to cart
+- Mention if items are in stock or out of stock
+- Show total price before checkout
+- Offer product recommendations based on browsing
+- Celebrate successful orders!
 
-async function main() {
-    try {
-        await runTests();
-    } catch (error) {
-        console.error("💥 Unexpected error:", error);
-        process.exit(1);
-    }
-}
+When to escalate:
+- Complex shipping issues
+- Payment problems
+- Bulk orders (>20 items)
+- Special customization requests`,
 
-main().catch(console.error);
+  welcomeMessage: "Welcome to our store! 🛍️ I'm here to help you find the perfect products. What are you looking for today?",
+  
+  skills: [ecommerceSkill]
+});
 
