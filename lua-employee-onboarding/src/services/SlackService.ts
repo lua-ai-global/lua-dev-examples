@@ -216,5 +216,61 @@ export default class SlackService {
       };
     }
   }
+
+  /**
+   * Search for users in the workspace by name
+   */
+  async searchUsers(searchTerm: string): Promise<{ 
+    success: boolean; 
+    users?: Array<{ id: string; name: string; realName: string; email?: string }>;
+    error?: string;
+  }> {
+    try {
+      const response = await this.client.get('/users.list', {
+        params: { limit: 1000 }
+      });
+
+      if (response.data.ok) {
+        const allUsers = response.data.members || [];
+        
+        // Filter users by search term (case-insensitive match on name, real_name, or display_name)
+        const searchLower = searchTerm.toLowerCase();
+        const matchedUsers = allUsers
+          .filter((user: any) => {
+            if (user.deleted || user.is_bot) return false; // Skip deleted users and bots
+            
+            const name = (user.name || '').toLowerCase();
+            const realName = (user.real_name || '').toLowerCase();
+            const displayName = (user.profile?.display_name || '').toLowerCase();
+            
+            return name.includes(searchLower) || 
+                   realName.includes(searchLower) || 
+                   displayName.includes(searchLower);
+          })
+          .map((user: any) => ({
+            id: user.id,
+            name: user.name,
+            realName: user.real_name || user.name,
+            email: user.profile?.email,
+          }));
+
+        return {
+          success: true,
+          users: matchedUsers,
+        };
+      } else {
+        return {
+          success: false,
+          error: response.data.error || 'Failed to search users',
+        };
+      }
+    } catch (error: any) {
+      console.error('Slack Search Users Error:', error.response?.data || error.message);
+      return {
+        success: false,
+        error: error.response?.data?.error || error.message,
+      };
+    }
+  }
 }
 

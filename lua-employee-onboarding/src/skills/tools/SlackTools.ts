@@ -215,3 +215,67 @@ export class DeleteMessageTool implements LuaTool {
   }
 }
 
+/**
+ * Search Users Tool
+ * 
+ * Search for users in the Slack workspace by name to get their user IDs for tagging.
+ */
+export class SearchUsersTool implements LuaTool {
+  name = "search_users";
+  description = "Search for users in the Slack workspace by name. Use this when you need to find someone's user ID to tag them. Returns matching users with their IDs.";
+
+  inputSchema = z.object({
+    searchTerm: z.string().describe("Name to search for (e.g., 'John', 'Sarah Chen')"),
+  });
+
+  async execute(input: z.infer<typeof this.inputSchema>) {
+    try {
+      const slackBotToken = env("SLACK_BOT_TOKEN");
+      
+      if (!slackBotToken) {
+        return {
+          success: false,
+          error: "SLACK_BOT_TOKEN not found in environment variables.",
+        };
+      }
+
+      const slackService = new SlackService(slackBotToken);
+      const result = await slackService.searchUsers(input.searchTerm);
+
+      if (result.success) {
+        if (result.users && result.users.length > 0) {
+          return {
+            success: true,
+            message: `Found ${result.users.length} user(s) matching "${input.searchTerm}"`,
+            users: result.users.map(u => ({
+              id: u.id,
+              name: u.realName,
+              username: u.name,
+              email: u.email,
+              mentionFormat: `<@${u.id}>`, 
+            })),
+            tip: "Use the 'id' field in <@USER_ID> format to mention them in messages",
+          };
+        } else {
+          return {
+            success: true,
+            message: `No users found matching "${input.searchTerm}"`,
+            users: [],
+          };
+        }
+      } else {
+        return {
+          success: false,
+          error: result.error,
+        };
+      }
+    } catch (error: any) {
+      console.error("Search Users Error:", error);
+      return {
+        success: false,
+        error: error.message || "Failed to search users",
+      };
+    }
+  }
+}
+

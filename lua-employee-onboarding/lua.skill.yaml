@@ -14,7 +14,7 @@ agent:
   welcomeMessage: ''
 skills:
   - name: slack-skill
-    version: 1.0.2
+    version: 1.0.3
     skillId: 61c48849-3696-4c5c-99af-44216ec02ad3
   - name: brex-skill
     version: 1.0.1

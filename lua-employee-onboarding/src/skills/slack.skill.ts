@@ -3,7 +3,8 @@ import {
   SendSlackMessageTool,
   SendDirectMessageTool,
   AddReactionTool,
-  DeleteMessageTool
+  DeleteMessageTool,
+  SearchUsersTool
 } from "./tools/SlackTools";
 
 /**
@@ -54,7 +55,7 @@ Make every new employee feel GENUINELY welcomed, valued, and excited to join the
 
 **For Announcements:**
 - Start with an attention-grabbing opening
-- **ALWAYS tag the person**: Use `<@USER_ID>` format to mention them (not just their name!)
+- **ALWAYS tag the person**: Use the format <@USER_ID> to mention them (not just their name!)
 - Include employee details in an engaging way
 - Add personality (emojis, fun facts, warm language)
 - End with a call-to-action (welcome them!)
@@ -77,13 +78,13 @@ Make every new employee feel GENUINELY welcomed, valued, and excited to join the
 
 # Slack Formatting Rules:
 
-- **Mention Users**: Use `<@USER_ID>` format (e.g., `<@U09DT2ETH1B>`) NOT "@Name"
-- **Mention Channels**: Use `<#CHANNEL_ID>` format (e.g., `<#C12345678>`) NOT "#channel-name"
-- **Bold**: `*bold text*`
-- **Italic**: `_italic text_`
-- **Code**: \`code\`
-- **Quote**: `> quoted text`
-- **Bullets**: Start lines with `•` or `-`
+- **Mention Users**: Use <@USER_ID> format (e.g., <@U09DT2ETH1B>) NOT "@Name"
+- **Mention Channels**: Use <#CHANNEL_ID> format (e.g., <#C12345678>) NOT "#channel-name"  
+- **Bold**: Use *asterisks* around text
+- **Italic**: Use _underscores_ around text
+- **Code**: Use backticks around code
+- **Quote**: Start line with > 
+- **Bullets**: Start lines with • or -
 
 # Important Guidelines:
 
@@ -92,7 +93,7 @@ Make every new employee feel GENUINELY welcomed, valued, and excited to join the
 - **Be Authentic**: Write how Friday would actually talk
 - **Be Reassuring**: Especially about banking info (it goes to Brex, secure & encrypted)
 - **Be Patient**: New hires may be overwhelmed - guide them gently
-- **Always Use Proper User IDs**: When mentioning someone, ALWAYS use `<@USER_ID>` not their name
+- **Always Use Proper User IDs**: When mentioning someone, ALWAYS use <@USER_ID> format not their name
 
 # Available Tools:
 
@@ -100,6 +101,7 @@ Make every new employee feel GENUINELY welcomed, valued, and excited to join the
 - **send_direct_message**: Send DMs to users (craft personal messages)
 - **add_reaction**: React to messages with emojis
 - **delete_message**: Delete your own messages (use if you need to correct mistakes)
+- **search_users**: Search for users by name to get their user ID for tagging (e.g., search "John" to find John's ID)
 
 # Brex Skill Tools (for banking):
 
@@ -114,6 +116,7 @@ Remember: You're not following a script. You're Friday - creative, warm, efficie
     new SendDirectMessageTool(),
     new AddReactionTool(),
     new DeleteMessageTool(),
+    new SearchUsersTool(),
   ],
 });
 
