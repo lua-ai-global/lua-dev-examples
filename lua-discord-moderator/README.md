@@ -11,9 +11,12 @@ This project contains two separate parts:
 
 1.  Navigate to the `bot` directory:
     ```bash
-    cd discord-moderator/bot
+    cd lua-discord-moderator/bot
     ```
-2.  Create a `.env` file from the example. This project does not include an example file, so you will have to create one from scratch.
+2.  Create a `.env` file from the example:
+    ```bash
+    cp .env.example .env
+    ```
 3.  Fill in the `.env` file with your Discord and Lua API keys.
 
 ### 2. Run the Bot
@@ -23,7 +26,7 @@ You can run the bot locally or using Docker.
 #### Running Locally
 
 ```bash
-# In discord-moderator/bot directory
+# In lua-discord-moderator/bot directory
 npm install
 npm run dev
 ```
@@ -37,7 +40,7 @@ The `bot` directory contains a `Dockerfile` and `docker-compose.yml`.
 1.  Make sure you have a `.env` file in the `bot` directory.
 2.  Run the bot:
     ```bash
-    # From the discord-moderator/bot directory
+    # From the lua-discord-moderator/bot directory
     docker-compose up --build
     ```
     - `--build`: This flag rebuilds the image if there are any changes to the `Dockerfile` or source code.
@@ -49,7 +52,7 @@ The `bot` directory contains a `Dockerfile` and `docker-compose.yml`.
 
     ```bash
     # Navigate to the bot directory first
-    cd discord-moderator/bot
+    cd lua-discord-moderator/bot
 
     # Build the image from within the bot directory
     docker build -t discord-moderator-bot .
@@ -65,7 +68,7 @@ The `bot` directory contains a `Dockerfile` and `docker-compose.yml`.
 
 1.  Navigate to the `agent` directory:
     ```bash
-    cd discord-moderator/agent
+    cd lua-discord-moderator/agent
     ```
 2.  Install dependencies:
     ```bash
