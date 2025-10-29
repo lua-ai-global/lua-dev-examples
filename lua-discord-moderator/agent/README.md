@@ -22,8 +22,6 @@ This demo is cleanly separated into two distinct projects:
 
 This decoupled architecture is a best practice. It makes the system robust and scalable, as the stateless agent can handle events from a simple, stateful client.
 
-![Architecture Diagram](https://i.imgur.com/your-diagram-image.png) <!-- It's recommended to create and add a diagram for docs -->
-
 ---
 
 ## ✨ Features in Depth
@@ -63,13 +61,13 @@ npm install
 
 ### 2. Configure Environment Variables
 
-The agent's tools and services require the `DISCORD_BOT_TOKEN` to be set in the deployment environment. When deploying via `lua-cli`, you can set this in your project's secrets.
-
-Run the following command and add your token:
+The agent's tools and services require the `DISCORD_BOT_TOKEN` to be set in the deployment environment. You can set this secret using the `lua-cli` interactive command:
 
 ```bash
-lua secrets set DISCORD_BOT_TOKEN=your-bot-token-here
+lua env
 ```
+
+From the interactive menu, select the option to **add or update secrets** for your production environment. You will then be prompted to enter the secret name (`DISCORD_BOT_TOKEN`) and its value.
 
 ### 3. Deploy the Agent
 
