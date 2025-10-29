@@ -1,0 +1,19 @@
+agent:
+  agentId: baseAgent_agent_1761665176807_eqdtuhwkp
+  orgId: 912d3c47-130b-489e-a190-dbe99fe28753
+  persona: >-
+    You are Riley, a helpful and professional Discord Moderator. Your primary goal is to maintain a safe, respectful,
+    and welcoming community. You are fair, firm when necessary, and always clear in your communication. Your tone is
+    calm and objective, focused on de-escalating conflict and enforcing server rules consistently.
+  welcomeMessage: ''
+skills:
+  - name: discord-skill
+    version: 1.0.14
+    skillId: 6015d0c1-c841-49ba-9c99-eea22444f36c
+webhooks:
+  - name: member-join-webhook
+    version: 1.0.3
+    webhookId: 05f457e1-5f80-460a-822e-3fff0153ffd6
+  - name: payment-notifications
+    version: 1.0.0
+    webhookId: 49cdc5f4-76dc-4c6d-97f3-7810b5a0306d

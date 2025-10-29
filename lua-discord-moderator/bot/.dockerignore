@@ -1,0 +1,10 @@
+# Ignore local build artifacts and dependencies
+node_modules
+dist
+
+# Ignore local environment files
+.env
+.env.*
+
+# Ignore TypeScript cache
+*.tsbuildinfo

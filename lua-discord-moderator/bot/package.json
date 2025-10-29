@@ -1,0 +1,21 @@
+{
+  "name": "discord-moderator-bot",
+  "version": "1.0.0",
+  "description": "Discord bot client for the moderation agent.",
+  "main": "dist/bot.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/bot.js",
+    "dev": "ts-node src/bot.ts"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "discord.js": "^14.7.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
