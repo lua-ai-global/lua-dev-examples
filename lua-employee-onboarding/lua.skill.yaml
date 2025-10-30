@@ -14,8 +14,15 @@ agent:
   welcomeMessage: ''
 skills:
   - name: slack-skill
-    version: 1.0.3
+    version: 1.0.4
     skillId: 61c48849-3696-4c5c-99af-44216ec02ad3
   - name: brex-skill
     version: 1.0.1
     skillId: fdbe0744-365e-4fcc-bf34-1f16778d777d
+jobs:
+  - name: birthday-celebration-job
+    version: 1.0.1
+    jobId: 60b71b72-699f-41b5-bcfd-f2e256b29599
+    schedule:
+      type: cron
+      expression: 0 0 * * *

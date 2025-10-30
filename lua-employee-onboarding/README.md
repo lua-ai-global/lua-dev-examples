@@ -151,6 +151,8 @@ Friday is designed to be:
 | `send_slack_message` | Send crafted messages to any channel |
 | `send_direct_message` | Send personalized DMs to users |
 | `add_reaction` | React to messages with emojis |
+| `delete_message` | Delete bot's own messages |
+| `search_users` | Find users by name to get their ID for tagging |
 
 ### Brex Skill Tools
 
@@ -159,6 +161,54 @@ Friday is designed to be:
 | `create_brex_user` | Create employee profile in Brex |
 | `verify_bank_account` | Validate routing/account numbers |
 | `register_bank_account` | Register verified banking info |
+
+## 🎂 Birthday Celebrations
+
+Friday can automatically celebrate employee birthdays!
+
+### How It Works
+
+1. **Daily Job** - Runs at midnight every day
+2. **Checks Resource** - Friday queries the "employee-birthdays" resource via RAG
+3. **Finds Matches** - Compares today's date with birthdays
+4. **Celebrates** - Posts creative birthday message to onboarding channel
+
+### Setup
+
+**1. Create a birthday resource document:**
+
+```markdown
+# Employee Birthdays
+
+## January
+- **John Doe** - January 15 (01-15) - User ID: U123ABC456
+
+## March
+- **Sarah Chen** - March 22 (03-22) - User ID: U456DEF789
+
+## July
+- **Rachel Green** - July 4 (07-04) - User ID: U234JKL567
+```
+
+**2. Upload as Resource:**
+- Go to Lua dashboard → Your Friday agent
+- Upload the file as a resource named "employee-birthdays"
+- Friday will reference it via RAG
+
+**3. Deploy:**
+- The birthday-celebration-job is already configured
+- Runs daily at midnight automatically
+- Friday crafts unique birthday messages each time
+
+### Birthday Message Format
+
+Friday will use the Slack skill to:
+- Tag the person: `<@USER_ID>`
+- Post celebratory message with emojis
+- Encourage team participation
+
+Example output:
+> 🎉🎂 Happy Birthday <@U123ABC>! Wishing you an incredible day filled with joy and cake! 🎂 Team, let's all wish them well! Drop a 🎉 below!
 
 ## 🔒 Security
 
