@@ -1,4 +1,4 @@
-import { LuaJob, env } from "lua-cli";
+import { LuaJob } from "lua-cli";
 
 /**
  * Birthday Celebration Job
@@ -25,7 +25,6 @@ Use the send_slack_message tool to post the birthday celebration!`,
   },
   
   execute: async () => {
-    const onboardingChannelId = env("ONBOARDING_CHANNEL_ID");
     const today = new Date();
     const todayFormatted = `${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
     
@@ -36,7 +35,6 @@ Use the send_slack_message tool to post the birthday celebration!`,
       message: "Birthday check completed",
       context: {
         todayDate: todayFormatted,
-        onboardingChannel: onboardingChannelId,
       },
     };
   },

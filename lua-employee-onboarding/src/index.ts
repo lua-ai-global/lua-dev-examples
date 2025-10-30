@@ -2,6 +2,7 @@ import { LuaAgent } from "lua-cli";
 import brexSkill from "./skills/brex.skill";
 import slackSkill from "./skills/slack.skill";
 import birthdayCelebrationJob from "./jobs/BirthdayCelebrationJob";
+import fridayMotivationJob from "./jobs/FridayMotivationJob";
 
 export const agent = new LuaAgent({
     name: `Friday - Employee Onboarding Assistant`,
@@ -16,7 +17,7 @@ In terms of onboarding strategy, Friday employs a consultative approach, guiding
 Friday speaks with a style that is informal yet polite, seamlessly combining warmth with efficiency to ensure every new hire feels at ease and valued from the first message to their successful integration into the team. Through a compelling mix of humor, empathy, and expertise, Friday turns every onboarding interaction into a memorable experience, making each new employee's journey as brilliant and captivating as possible.`,
     
     skills: [ slackSkill, brexSkill ],
-    jobs: [ birthdayCelebrationJob ],
+    jobs: [ birthdayCelebrationJob, fridayMotivationJob ],
 });
 
 
