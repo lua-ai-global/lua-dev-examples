@@ -14,11 +14,14 @@ agent:
   welcomeMessage: ''
 skills:
   - name: slack-skill
-    version: 1.0.4
+    version: 1.0.1
     skillId: 61c48849-3696-4c5c-99af-44216ec02ad3
   - name: brex-skill
     version: 1.0.1
     skillId: fdbe0744-365e-4fcc-bf34-1f16778d777d
+  - name: airtable-skill
+    version: 1.0.1
+    skillId: fe022297-d3b3-4ed4-8dc4-bfb954f2ca90
 jobs:
   - name: birthday-celebration-job
     version: 1.0.1
@@ -26,3 +29,10 @@ jobs:
     schedule:
       type: cron
       expression: 0 0 * * *
+  - name: friday-motivation-job
+    version: 1.0.1
+    jobId: 7c45a70e-ce0d-4625-bfdd-422ebf9a9350
+    schedule:
+      type: cron
+      expression: 0 10 * * 5
+      timezone: GMT

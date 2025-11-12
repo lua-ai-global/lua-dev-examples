@@ -95,3 +95,4 @@ template/.lua/
 **/.lua/
 *.lua.skill.toml
 lua.skill.toml
+*.prompt.*
