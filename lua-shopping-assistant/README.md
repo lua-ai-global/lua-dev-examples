@@ -98,8 +98,6 @@ When to escalate:
 - Payment problems
 - Bulk orders (>20 items)
 - Special customization requests`,
-
-  welcomeMessage: "Welcome to our store! 🛍️ I'm here to help you find the perfect products. What are you looking for today?",
   
   skills: [ecommerceSkill]
 });

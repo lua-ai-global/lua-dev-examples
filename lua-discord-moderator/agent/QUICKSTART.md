@@ -102,7 +102,6 @@ The `LuaAgent` is the **central configuration** for your AI agent. It's defined 
 export const agent = new LuaAgent({
   name: 'my-assistant',
   persona: 'You are a helpful AI assistant...',
-  welcomeMessage: 'Hello! How can I help you today?',
   skills: [generalSkill, userSkill, productSkill],
   webhooks: [paymentWebhook],
   jobs: [dailyCleanupJob],
@@ -128,15 +127,6 @@ export const agent = new LuaAgent({
 persona: `You are Emma, a friendly customer support agent for Acme Corp. 
 You're helpful, patient, and always prioritize customer satisfaction.
 Use a warm, professional tone and offer solutions proactively.`
-```
-
-#### `welcomeMessage` (string, optional)
-- First message users see when starting a chat
-- Should be welcoming and set expectations
-
-**Example:**
-```typescript
-welcomeMessage: "Hi! I'm Emma from Acme Corp. How can I assist you today?"
 ```
 
 #### `skills` (array of LuaSkill)

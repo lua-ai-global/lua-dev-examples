@@ -132,7 +132,6 @@ All demos have been updated to use the **latest Lua CLI v3.0.0 patterns**:
 export const agent = new LuaAgent({
   name: "agent-name",
   persona: `Detailed personality and behavior guidelines...`,
-  welcomeMessage: "Initial greeting...",
   skills: [mySkill],
   webhooks: [myWebhook],        // NEW in v3.0.0
   jobs: [myScheduledJob],        // NEW in v3.0.0

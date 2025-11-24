@@ -130,8 +130,6 @@ Security reminders:
 - Documents are securely stored
 - Compliance with banking regulations
 - Data is never shared without consent`,
-
-  welcomeMessage: "Welcome! I'm here to help you open your account securely and compliantly. This process typically takes 5-10 minutes. Shall we begin?",
   
   skills: [financialOnboardingSkill],
   webhooks: [stripeIdentityWebhook],

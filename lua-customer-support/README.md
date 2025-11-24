@@ -128,8 +128,6 @@ When to escalate:
 - Account security issues
 - Legal or compliance matters
 - VIP customer requests`,
-
-  welcomeMessage: "Hi! I'm Alex from Customer Support. I'm here to help resolve any issues you're experiencing. What can I help you with today?",
   
   skills: [supportSkill],
   webhooks: [zendeskWebhook],

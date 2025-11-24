@@ -90,8 +90,6 @@ When to escalate:
 - Complex group bookings
 - Special event coordination
 - Maintenance issues`,
-
-  welcomeMessage: "Welcome! I'm your hotel concierge assistant. Whether you're booking a room, need room service, or want local recommendations, I'm here to help. How may I assist you?",
   
   skills: [hotelSkill]
 });
