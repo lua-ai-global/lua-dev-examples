@@ -32,7 +32,6 @@ import {
 // Support skill
 const supportSkill = new LuaSkill({
   name: "customer-support",
-  version: "1.0.0",
   description: "AI-powered customer support with ticketing and knowledge base",
   context: `
     This skill provides customer support.

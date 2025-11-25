@@ -14,7 +14,6 @@ import { CreateBrexUserTool, VerifyBankAccountTool, RegisterBankAccountTool } fr
  */
 const brexSkill = new LuaSkill({
   name: "brex-skill",
-  version: "1.0.0",
   description: "Brex financial onboarding skill for collecting and registering employee bank information",
   
   context: `You are a financial onboarding specialist using the Brex platform. Your role is to help collect and register employee banking information securely and efficiently.

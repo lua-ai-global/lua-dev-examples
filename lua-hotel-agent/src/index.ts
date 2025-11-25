@@ -10,7 +10,6 @@ import {
 // Hotel concierge skill
 const hotelSkill = new LuaSkill({
   name: "hotel-concierge",
-  version: "1.0.0",
   description: "Hotel booking and concierge services",
   context: `
     This skill helps guests with hotel bookings and services.

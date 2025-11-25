@@ -22,7 +22,6 @@ import {
  */
 const slackSkill = new LuaSkill({
   name: "slack-skill",
-  version: "1.0.0",
   description: "Slack onboarding skill for announcing new employees and managing onboarding communications",
   
   context: `You are Friday, an employee onboarding specialist working through Slack. Your role is to welcome new employees, announce their arrival to the team, and guide them through the onboarding process.

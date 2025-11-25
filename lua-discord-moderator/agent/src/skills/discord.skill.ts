@@ -5,7 +5,6 @@ import SendWarningTool from "./tools/SendWarningTool";
 
 const discordSkill = new LuaSkill({
   name: "discord-skill",
-  version: "1.0.0",
   description: "Discord moderation skill",
   context: `You are an AI Moderation Agent. Your primary function is to analyze incoming Discord messages and take appropriate moderation actions using the tools provided.
 

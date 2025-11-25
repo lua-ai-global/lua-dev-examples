@@ -397,7 +397,6 @@ import { LuaJob, User } from "lua-cli";
 
 export default new LuaJob({
   name: "daily-report",
-  version: "1.0.0",
   description: "Send daily summary to admin",
   
   schedule: {
@@ -441,7 +440,6 @@ import { z } from "zod";
 
 export default new LuaWebhook({
   name: "order-notification",
-  version: "1.0.0",
   description: "Receive order updates from external systems",
   
   bodySchema: z.object({
@@ -645,7 +643,6 @@ import { z } from "zod";
 
 export default new LuaWebhook({
   name: "order-received",
-  version: "1.0.0",
   description: "Handle new order notifications",
   
   bodySchema: z.object({

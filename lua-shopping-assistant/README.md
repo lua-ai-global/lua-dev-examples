@@ -35,7 +35,6 @@ import {
 // Create shopping skill
 const ecommerceSkill = new LuaSkill({
   name: "ecommerce-assistant",
-  version: "1.0.0",
   description: "AI shopping assistant for e-commerce websites",
   context: `
     This skill helps customers shop and complete purchases.

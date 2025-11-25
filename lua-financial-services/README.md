@@ -36,7 +36,6 @@ import {
 // Onboarding skill
 const financialOnboardingSkill = new LuaSkill({
   name: "financial-onboarding",
-  version: "1.0.0",
   description: "Financial services customer onboarding with KYC verification",
   context: `
     This skill guides customers through financial account onboarding.

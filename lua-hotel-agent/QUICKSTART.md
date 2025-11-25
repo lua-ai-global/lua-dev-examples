@@ -81,7 +81,6 @@ import GetWeatherTool from "./tools/GetWeatherTool";
 // Keep only what you need
 const mySkill = new LuaSkill({
   name: "my-skill",
-  version: "1.0.0",
   description: "My custom AI assistant",
   context: "Use get_weather when users ask about weather.",
   tools: [

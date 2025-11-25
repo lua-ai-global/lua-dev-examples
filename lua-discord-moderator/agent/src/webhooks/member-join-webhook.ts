@@ -4,7 +4,6 @@ import DiscordService from "@/src/services/DiscordService";
 
 const memberJoinWebhook = new LuaWebhook({
   name: "member-join-webhook",
-  version: "1.0.0",
   description: "Triggered when a new member joins the Discord server.",
   context:
     "This webhook is triggered when a new member joins the Discord server. It sends a welcome message to the new member.",
