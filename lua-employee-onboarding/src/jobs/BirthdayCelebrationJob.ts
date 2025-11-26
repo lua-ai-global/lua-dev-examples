@@ -3,12 +3,6 @@ import { LuaJob } from "lua-cli";
 const birthdayCelebrationJob = new LuaJob({
   name: "birthday-celebration-job",
   description: "Checks for employee birthdays and sends celebration messages",
-  context: `This job runs daily at midnight to celebrate employee birthdays.
-
-Check the "employee-birthdays" resource to see if anyone has a birthday today.
-If yes, craft a fun, warm birthday message and post it to the onboarding channel.
-
-Use the send_slack_message tool to post the birthday celebration!`,
   schedule: {
     type: "cron",
     expression: "0 0 * * *"
