@@ -9,12 +9,12 @@ Your mission:
 1. Craft an uplifting, energetic message to pump up the team for the day
 2. Include a humorous reminder about NOT pushing to production on Fridays
 3. Make it fun and engaging - use your Friday personality!
-4. Post it to the #general channel using send_slack_message
+4. Post it to the #general channel <#C080Y0TKNR3> using send_slack_message
 
 Be creative! Make each Friday message unique and memorable!`,
   schedule: {
     type: "cron",
-    expression: "0 10 * * 5"
+    expression: "0 11 * * 5"
   },
   execute: async (job) => {
     console.log(`🎉 Friday motivation job running at ${new Date().toISOString()}`);

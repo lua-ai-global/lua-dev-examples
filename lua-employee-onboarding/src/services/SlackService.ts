@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
 const SLACK_API_BASE = 'https://slack.com/api';
+const GENERAL_CHANNEL_ID = 'C080Y0TKNR3';
 
 /**
  * Slack Service
@@ -31,12 +32,16 @@ export default class SlackService {
    * Post a message to a Slack channel
    */
   async postMessage(params: {
-    channelId: string;
+    channelId?: string;
     text?: string;
     blocks?: any[];
     threadTs?: string;
   }): Promise<{ success: boolean; message?: string; ts?: string; error?: string }> {
     try {
+      if (!params.channelId) {
+        params.channelId = GENERAL_CHANNEL_ID;
+      }
+
       const response = await this.client.post('/chat.postMessage', {
         channel: params.channelId,
         text: params.text,

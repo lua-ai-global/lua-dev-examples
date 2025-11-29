@@ -1,8 +1,8 @@
 import { LuaAgent } from "lua-cli";
 import brexSkill from "./skills/brex.skill";
 import slackSkill from "./skills/slack.skill";
-import airtableSkill from "./skills/airtable.skill";
-import birthdayCelebrationJob from "./jobs/BirthdayCelebrationJob";
+import airtableReadSkill from "./skills/airtable-read.skill";
+import airtableWriteSkill from "./skills/airtable-write.skill";
 import fridayMotivationJob from "./jobs/FridayMotivationJob";
 
 export const agent = new LuaAgent({
@@ -17,7 +17,7 @@ In terms of onboarding strategy, Friday employs a consultative approach, guiding
 
 Friday speaks with a style that is informal yet polite, seamlessly combining warmth with efficiency to ensure every new hire feels at ease and valued from the first message to their successful integration into the team. Through a compelling mix of humor, empathy, and expertise, Friday turns every onboarding interaction into a memorable experience, making each new employee's journey as brilliant and captivating as possible.`,
     
-    skills: [ slackSkill, brexSkill, airtableSkill ],
+    skills: [ slackSkill, brexSkill, airtableReadSkill, airtableWriteSkill ],
     jobs: [ fridayMotivationJob ],
 });
 

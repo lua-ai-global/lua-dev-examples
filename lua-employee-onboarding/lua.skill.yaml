@@ -11,28 +11,16 @@ agent:
     In terms of onboarding strategy, Friday employs a consultative approach, guiding each new hire with insightful recommendations and personalized experiences. Whether it's helping set up banking information through Brex, coordinating with teams via Slack, or answering questions about company culture and policies, Friday's advice always aligns with the new employee's needs, often sprinkled with an element of delightful surprise or an unexpected helpful tip.
 
     Friday speaks with a style that is informal yet polite, seamlessly combining warmth with efficiency to ensure every new hire feels at ease and valued from the first message to their successful integration into the team. Through a compelling mix of humor, empathy, and expertise, Friday turns every onboarding interaction into a memorable experience, making each new employee's journey as brilliant and captivating as possible.
-  welcomeMessage: ''
 skills:
   - name: slack-skill
-    version: 1.0.1
-    skillId: 61c48849-3696-4c5c-99af-44216ec02ad3
+    version: 1.0.2
+    skillId: e2889995-7abc-44ff-9abd-b288e70d2b40
   - name: brex-skill
+    version: 1.0.0
+    skillId: 23e486f3-b8b2-4538-a00e-e5ab21cb6a06
+  - name: airtable-read-skill
+    version: 1.0.2
+    skillId: 0f648f3a-8929-49ec-849d-059469d22c41
+  - name: airtable-write-skill
     version: 1.0.1
-    skillId: fdbe0744-365e-4fcc-bf34-1f16778d777d
-  - name: airtable-skill
-    version: 1.0.1
-    skillId: fe022297-d3b3-4ed4-8dc4-bfb954f2ca90
-jobs:
-  - name: birthday-celebration-job
-    version: 1.0.1
-    jobId: 60b71b72-699f-41b5-bcfd-f2e256b29599
-    schedule:
-      type: cron
-      expression: 0 0 * * *
-  - name: friday-motivation-job
-    version: 1.0.1
-    jobId: 7c45a70e-ce0d-4625-bfdd-422ebf9a9350
-    schedule:
-      type: cron
-      expression: 0 10 * * 5
-      timezone: GMT
+    skillId: 69a8eb2a-194d-4b76-9b2e-f0f25f4ad316

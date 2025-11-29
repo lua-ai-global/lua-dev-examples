@@ -337,6 +337,28 @@ export default class AirtableService {
     }
   }
 
+  async getBaseSchema(params: {
+    baseId: string;
+  }): Promise<{
+    success: boolean;
+    schema?: any;
+    error?: string;
+  }> {
+    try {
+      const response = await this.client.get(`/meta/bases/${params.baseId}/tables`);
+      return {
+        success: true,
+        schema: response.data,
+      };
+    } catch (error: any) {
+      console.error('Airtable Get Base Schema Error:', error.response?.data || error.message);
+      return {
+        success: false,
+        error: error.response?.data?.error?.message || error.message,
+      };
+    }
+  }
+
   async createTable(params: {
     baseId: string;
     name: string;
