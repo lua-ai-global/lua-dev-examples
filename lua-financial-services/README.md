@@ -36,7 +36,6 @@ import {
 // Onboarding skill
 const financialOnboardingSkill = new LuaSkill({
   name: "financial-onboarding",
-  version: "1.0.0",
   description: "Financial services customer onboarding with KYC verification",
   context: `
     This skill guides customers through financial account onboarding.
@@ -154,8 +153,6 @@ Security reminders:
 - Documents are securely stored
 - Compliance with banking regulations
 - Data is never shared without consent`,
-
-  welcomeMessage: "Welcome! I'm here to help you open your account securely and compliantly. This process typically takes 5-10 minutes. Shall we begin?",
   
   skills: [financialOnboardingSkill],
   webhooks: [stripeIdentityWebhook],

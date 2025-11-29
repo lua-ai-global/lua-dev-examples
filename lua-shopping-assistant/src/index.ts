@@ -12,7 +12,6 @@ import {
 // Create shopping skill
 const ecommerceSkill = new LuaSkill({
   name: "ecommerce-assistant",
-  version: "1.0.0",
   description: "AI shopping assistant for e-commerce websites",
   context: `
     This skill helps customers shop and complete purchases.
@@ -75,8 +74,6 @@ When to escalate:
 - Payment problems
 - Bulk orders (>20 items)
 - Special customization requests`,
-
-  welcomeMessage: "Welcome to our store! 🛍️ I'm here to help you find the perfect products. What are you looking for today?",
   
   skills: [ecommerceSkill]
 });

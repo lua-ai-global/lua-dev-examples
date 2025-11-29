@@ -32,7 +32,6 @@ import {
 // Support skill
 const supportSkill = new LuaSkill({
   name: "customer-support",
-  version: "1.0.0",
   description: "AI-powered customer support with ticketing and knowledge base",
   context: `
     This skill provides customer support.
@@ -128,8 +127,6 @@ When to escalate:
 - Account security issues
 - Legal or compliance matters
 - VIP customer requests`,
-
-  welcomeMessage: "Hi! I'm Alex from Customer Support. I'm here to help resolve any issues you're experiencing. What can I help you with today?",
   
   skills: [supportSkill],
   webhooks: [zendeskWebhook],

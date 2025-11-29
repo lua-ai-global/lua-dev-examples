@@ -1,7 +1,8 @@
 import axios, { AxiosInstance } from 'axios';
+import { env } from 'lua-cli';
 
 const SLACK_API_BASE = 'https://slack.com/api';
-const GENERAL_CHANNEL_ID = 'C080Y0TKNR3';
+const GENERAL_CHANNEL_ID = env('SLACK_GENERAL_CHANNEL_ID');
 
 /**
  * Slack Service
