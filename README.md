@@ -175,7 +175,7 @@ const preProcessor = new PreProcessor({
 });
 
 const postProcessor = new PostProcessor({
-  execute: async (response, user) => {
+  execute: async (user, message, response, channel) => {
     // Add disclaimers, format output
     return { modifiedResponse: response + "\n\nDisclaimer..." };
   }

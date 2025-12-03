@@ -611,8 +611,11 @@ async execute(input: { query: string }) {
   const results = await Data.search('movies', input.query, 10, 0.6);
   
   return {
-    movies: results.data.map(entry => ({
-      ...entry.data,
+    movies: results.map(entry => ({
+      title: entry.title,
+      director: entry.director,
+      year: entry.year,
+      score: entry.score,
       matchQuality: entry.score > 0.9 ? "🌟 Excellent match" :
                     entry.score > 0.8 ? "✅ Good match" :
                     entry.score > 0.7 ? "👍 Fair match" :

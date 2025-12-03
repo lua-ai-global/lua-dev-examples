@@ -92,7 +92,7 @@ const validateInformationPreProcessor = new PreProcessor({
   execute: async (message: any, user: any) => {
     // Ensure user has started onboarding
     const applications = await Data.search('onboarding_applications', user.email, 1);
-    if (applications.count === 0) {
+    if (applications.length === 0) {
       return {
         block: true,
         response: "Please start the onboarding process first by providing your email address."
@@ -106,7 +106,7 @@ const validateInformationPreProcessor = new PreProcessor({
 const complianceDisclaimerPostProcessor = new PostProcessor({
   name: 'compliance-disclaimer',
   description: 'Add regulatory disclaimers to responses',
-  execute: async (response: any, user: any) => {
+  execute: async (user: any, message: string, response: string, channel: string) => {
     return {
       modifiedResponse: response + 
         "\n\n_Banking services provided by our partner bank. FDIC insured. Member FDIC. Your information is encrypted and secure._"
@@ -469,7 +469,7 @@ const fraudCheck = await fetch('https://fraud-api.com/check', {
 const fraudResult = await fraudCheck.json();
 
 if (fraudResult.risk_score > 0.7) {
-  await Data.update(applicationId, {
+  await Data.update('onboarding_applications', applicationId, {
     ...app.data,
     status: 'fraud_review',
     flaggedForReview: true,

@@ -160,7 +160,7 @@ export class SearchKnowledgeBaseTool implements LuaTool {
       0.7
     );
     
-    if (results.count === 0) {
+    if (results.length === 0) {
       return {
         articles: [],
         message: "No articles found. Would you like to create a support ticket?"
@@ -168,16 +168,16 @@ export class SearchKnowledgeBaseTool implements LuaTool {
     }
     
     return {
-      articles: results.data.map(entry => ({
+      articles: results.map(entry => ({
         id: entry.id,
-        title: entry.data.title,
-        content: entry.data.content.substring(0, 300) + '...',
-        category: entry.data.category,
+        title: entry.title,
+        content: entry.content.substring(0, 300) + '...',
+        category: entry.category,
         relevance: `${Math.round(entry.score * 100)}% match`,
-        url: entry.data.url
+        url: entry.url
       })),
-      count: results.count,
-      message: `Found ${results.count} helpful articles`
+      count: results.length,
+      message: `Found ${results.length} helpful articles`
     };
   }
 }

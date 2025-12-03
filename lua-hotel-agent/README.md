@@ -300,19 +300,19 @@ export class GetLoyaltyPointsTool implements LuaTool {
   async execute(input: z.infer<typeof this.inputSchema>) {
     const results = await Data.search('loyalty_members', input.email, 1);
     
-    if (results.count === 0) {
+    if (results.length === 0) {
       return {
         member: false,
         message: "Not a loyalty member. Would you like to join?"
       };
     }
     
-    const member = results.data[0];
+    const member = results[0];
     return {
       member: true,
-      points: member.data.points,
-      tier: member.data.tier,
-      benefits: member.data.benefits
+      points: member.points,
+      tier: member.tier,
+      benefits: member.benefits
     };
   }
 }
