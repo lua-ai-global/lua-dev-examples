@@ -8,16 +8,15 @@ A friendly community helper bot for the Lua Discord server, built with `lua-cli`
 |---------|---------------|
 | **LuaAgent** | Unified agent configuration |
 | **LuaSkill** | Community assistance skill |
-| **LuaTool** | 5 custom tools |
+| **LuaTool** | 4 custom tools (with conditions) |
 | **LuaMCPServer** | lua-dev-docs (SSE transport) |
 | **LuaWebhook** | Welcome new members |
 | **LuaJob** | Weekly tips (static cron job) |
 | **Jobs API** | User reminders (dynamic) |
-| **PreProcessor** | Help request detection |
+| **PreProcessor** | Rate limiting, Analytics |
 | **PostProcessor** | Add documentation links |
-| **User API** | Builder profile tracking |
+| **User API** | Discord ID sync, rate limits |
 | **Data API** | Save/search forum posts |
-| **CDN API** | Upload code examples |
 
 ## How It Works
 
@@ -27,9 +26,17 @@ A friendly community helper bot for the Lua Discord server, built with `lua-cli`
 Discord (WebSocket) → Bot (Discord.js) → Lua API → Agent → Response → Discord
 ```
 
-### When Does the Agent Respond?
+### Session Strategy
 
-The bot only forwards messages that need attention:
+| Context | Session ID | Behavior |
+|---------|------------|----------|
+| **DMs** | `discord-dm-{userId}` | Personal conversation history |
+| **Threads** | `discord-thread-{threadId}` | Shared context (all users) |
+| **Channels** | `discord-channel-{userId}` | Per-user in public spaces |
+
+This means in forum threads, all users share the same conversation context - the agent sees the full discussion!
+
+### When Does the Agent Respond?
 
 | Trigger | Action |
 |---------|--------|
@@ -38,12 +45,7 @@ The bot only forwards messages that need attention:
 | **@Lua mention** | Always respond |
 | **New forum post** | Search for similar resolved posts |
 | **Forum post resolved** | Save to knowledge base |
-| **New member joins** | Send welcome DM |
-
-### Forum Integration
-
-- **New post created** → Agent searches knowledge base for similar questions
-- **Post marked "Resolved"** → Agent saves the Q&A to help future users
+| **New member joins** | Send welcome DM (via webhook) |
 
 ## Project Structure
 
@@ -55,11 +57,10 @@ lua-discord-moderator/
 │       ├── skills/
 │       │   └── community.skill.ts
 │       ├── tools/
-│       │   ├── SavePostTool.ts      # Data API
+│       │   ├── SavePostTool.ts      # Data API (conditional)
 │       │   ├── SearchPostsTool.ts   # Vector search
-│       │   ├── SetReminderTool.ts   # Jobs API
-│       │   ├── GetProfileTool.ts    # User API
-│       │   └── UploadExampleTool.ts # CDN API
+│       │   ├── SetReminderTool.ts   # Jobs API + User API
+│       │   └── MarkResolvedTool.ts  # Discord API (conditional)
 │       ├── mcp/
 │       │   └── lua-docs.ts          # MCP Server
 │       ├── webhooks/
@@ -67,9 +68,12 @@ lua-discord-moderator/
 │       ├── jobs/
 │       │   └── weekly-tip.ts
 │       ├── preprocessors/
-│       │   └── help-detector.ts
+│       │   ├── rate-limiter.ts      # Per-user DM rate limiting
+│       │   └── analytics.ts         # Interaction tracking
 │       ├── postprocessors/
 │       │   └── add-docs-link.ts
+│       ├── utils/
+│       │   └── discord-context.ts   # Context helper
 │       └── services/
 │           └── DiscordService.ts
 └── bot/                      # Discord bot
@@ -89,9 +93,22 @@ lua-discord-moderator/
    - Server Members Intent
 5. Copy the bot token
 6. Go to "OAuth2" → "URL Generator"
-   - Select scopes: `bot`, `applications.commands`
-   - Select permissions: `Send Messages`, `Create Public Threads`, `Read Message History`, `Manage Threads`
-7. Use the generated URL to invite bot to your server
+   - Select scopes: `bot`
+   - Select permissions: See below
+
+**Required Bot Permissions:**
+- Read Messages/View Channels
+- Send Messages
+- Send Messages in Threads
+- Read Message History
+- **Manage Threads** (for adding Resolved tag)
+
+**Permission Integer:** `326417591296`
+
+Invite URL format:
+```
+https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=326417591296&scope=bot
+```
 
 ### 2. Configure Discord Server
 
@@ -106,8 +123,8 @@ lua-discord-moderator/
 cd agent
 npm install
 
-# Set environment variables
-lua env sandbox
+# Set environment variables for production
+lua env production
 # Add: DISCORD_BOT_TOKEN, TIPS_CHANNEL_ID
 
 # Push and deploy
@@ -123,11 +140,13 @@ Create `bot/.env`:
 ```env
 DISCORD_BOT_TOKEN=your_discord_bot_token
 LUA_AGENT_ID=your_agent_id
-LUA_API_KEY=your_lua_api_key
 LUA_API_URL=https://api.heylua.ai
+LUA_WEBHOOK_URL=https://webhook.heylua.ai
 ASK_LUA_CHANNEL_NAME=ask-lua
 RESOLVED_TAG_NAME=Resolved
 ```
+
+> **Note:** No `LUA_API_KEY` needed! The bot uses session-based authentication with `x-session-id` header.
 
 Run locally:
 ```bash
@@ -142,9 +161,17 @@ cd bot
 docker-compose up --build
 ```
 
+Or deploy to Fly.io:
+```bash
+cd bot
+fly launch
+fly secrets set DISCORD_BOT_TOKEN=xxx LUA_AGENT_ID=xxx
+fly deploy
+```
+
 ## Environment Variables
 
-### Agent (lua env)
+### Agent (lua env production)
 
 | Variable | Description |
 |----------|-------------|
@@ -157,20 +184,30 @@ docker-compose up --build
 |----------|-------------|
 | `DISCORD_BOT_TOKEN` | Discord bot token |
 | `LUA_AGENT_ID` | Your Lua agent ID |
-| `LUA_API_KEY` | Your Lua API key |
 | `LUA_API_URL` | Lua API URL (default: https://api.heylua.ai) |
+| `LUA_WEBHOOK_URL` | Webhook URL (default: https://webhook.heylua.ai) |
 | `ASK_LUA_CHANNEL_NAME` | Channel name to monitor (default: ask-lua) |
 | `RESOLVED_TAG_NAME` | Forum tag name for resolved posts (default: Resolved) |
 
 ## Tools
 
-| Tool | API | Description |
-|------|-----|-------------|
-| `save_post` | Data | Save resolved forum posts with vector indexing |
-| `search_posts` | Data | Semantic search through past solutions |
-| `set_reminder` | Jobs | Create user reminders (dynamic jobs) |
-| `get_profile` | User | Get/update builder profile |
-| `upload_example` | CDN | Upload files to share |
+| Tool | API | Condition | Description |
+|------|-----|-----------|-------------|
+| `save_post` | Data | `trigger === "forum_resolved"` | Save resolved forum posts |
+| `search_posts` | Data | None | Semantic search through past solutions |
+| `set_reminder` | Jobs + User | None | Create reminders with DM delivery |
+| `mark_resolved` | Discord | `isThread && trigger === "mention"` | Add Resolved tag to forum threads |
+
+## PreProcessors
+
+| Name | Priority | Description |
+|------|----------|-------------|
+| `rate-limiter` | 1 | Per-user rate limiting for DMs (5/min) |
+| `analytics` | 10 | Track interactions, sync Discord ID to user profile |
+
+## PostProcessor
+
+**add-docs-link**: Appends relevant documentation links to responses based on detected topics (100+ topic mappings).
 
 ## MCP Server
 
@@ -184,16 +221,23 @@ new LuaMCPServer({
 });
 ```
 
-## Webhooks
+## Context Passing
 
-**New Member Webhook:**
-```
-POST https://api.heylua.ai/webhooks/{agent_id}/new-member
-{
-  "userId": "discord_user_id",
-  "guildId": "discord_guild_id",
-  "username": "optional_username"
+Discord context is passed to the agent via a single `DISCORD_REQUEST_CONTEXT` JSON env variable:
+
+```typescript
+// bot.ts
+envOverride: {
+  DISCORD_REQUEST_CONTEXT: JSON.stringify({
+    channelId, channelName, channelType, guildId,
+    authorId, authorTag, messageId, isThread, parentId, trigger
+  })
 }
+
+// In agent tools/preprocessors
+import { getDiscordContext } from "../utils/discord-context";
+const ctx = getDiscordContext();
+// ctx.authorId, ctx.trigger, ctx.isThread, etc.
 ```
 
 ## Learn More

@@ -1,7 +1,7 @@
 {
-  "name": "discord-moderator-agent",
+  "name": "lua-community-assistant",
   "version": "1.0.0",
-  "description": "The lua-cli agent for Discord moderation.",
+  "description": "Lua Community Assistant - Discord bot agent built with lua-cli",
   "main": "dist/index.js",
   "type": "commonjs",
   "scripts": {
