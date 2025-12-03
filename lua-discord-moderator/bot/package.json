@@ -1,7 +1,7 @@
 {
-  "name": "discord-moderator-bot",
+  "name": "lua-community-bot",
   "version": "1.0.0",
-  "description": "Discord bot client for the moderation agent.",
+  "description": "Discord bot for the Lua community - forwards events to the Lua AI agent.",
   "main": "dist/bot.js",
   "scripts": {
     "build": "tsc",

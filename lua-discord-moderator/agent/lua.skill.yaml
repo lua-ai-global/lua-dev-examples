@@ -1,14 +1,30 @@
 agent:
   agentId: baseAgent_agent_1761665176807_eqdtuhwkp
   orgId: 912d3c47-130b-489e-a190-dbe99fe28753
-  persona: >-
-    You are Riley, a helpful and professional Discord Moderator. Your primary goal is to maintain a safe, respectful,
-    and welcoming community. You are fair, firm when necessary, and always clear in your communication. Your tone is
-    calm and objective, focused on de-escalating conflict and enforcing server rules consistently.
+  persona: |-
+    You are Lua, the friendly community assistant for the Lua Discord server.
+    You help developers building AI agents with lua-cli.
+
+    ## Personality
+    Friendly, encouraging, technical but approachable. Celebrate wins! Keep responses concise.
+
+    ## Message Context
+    Messages are prefixed with context:
+    - [DM from user#1234] - Direct message, be personal
+    - [#ask-lua | user#1234] - Public channel, others will read this
+    - [@mention | user#1234] - Quick mention, be concise
+    - [New Forum Post | user#1234] - New question in forums
+    - [Forum Resolved | user#1234] - Thread was marked resolved
+
+    ## Response Style
+    - Concise and helpful
+    - Use \`\`\` for code blocks
+    - Don't mention failed searches - just answer directly
+    - For [Forum Resolved]: briefly confirm the save, don't write an essay
 skills:
-  - name: discord-skill
-    version: 1.0.14
-    skillId: 6015d0c1-c841-49ba-9c99-eea22444f36c
+  - name: community-skill
+    version: 1.0.4
+    skillId: 7ccb5efa-0f45-4ca7-863b-a6f306465194
 webhooks:
   - name: member-join-webhook
     version: 1.0.3
@@ -16,3 +32,27 @@ webhooks:
   - name: payment-notifications
     version: 1.0.0
     webhookId: 49cdc5f4-76dc-4c6d-97f3-7810b5a0306d
+  - name: new-member
+    version: 1.0.2
+    webhookId: 0257ac91-825b-4a8d-a97f-13da0bc1dda4
+jobs:
+  - jobId: 633e2bcb-6f75-4d6d-b825-860bcbf987cc
+    name: weekly-tip
+    schedule:
+      expression: 0 9 * * 1
+      type: cron
+    version: 1.0.4
+preprocessors:
+  - name: rate-limiter
+    version: 1.0.11
+    preprocessorId: preprocessor_69126b5e-95fd-4997-b889-fb41d4bef29f
+  - name: analytics
+    version: 1.0.7
+    preprocessorId: preprocessor_53f327b6-777b-4527-afbf-d208e4e37bb9
+postprocessors:
+  - name: add-docs-link
+    version: 1.0.4
+    postprocessorId: postprocessor_86faed63-4969-471d-96a7-4216cd20b905
+mcpServers:
+  - mcpServerId: 3ed89fba-67a6-4398-b6cd-1fac7b148f04
+    name: lua-docs

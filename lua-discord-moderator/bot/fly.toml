@@ -1,0 +1,20 @@
+# fly.toml app configuration file generated for lua-community-bot on 2025-12-01T18:07:30-08:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'lua-community-bot'
+primary_region = 'lhr'
+
+[build]
+  dockerfile = 'Dockerfile'
+
+[env]
+  ASK_LUA_CHANNEL_NAME = 'ask-lua'
+  LUA_API_URL = 'https://api.heylua.ai'
+  LUA_WEBHOOK_URL = 'https://webhook.heylua.ai'
+  NODE_ENV = 'production'
+  RESOLVED_TAG_NAME = 'Resolved'
+
+[[vm]]
+  size = 'shared-cpu-1x'

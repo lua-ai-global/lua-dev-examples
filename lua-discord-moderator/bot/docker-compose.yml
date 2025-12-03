@@ -2,11 +2,13 @@ version: "3.8"
 
 services:
   bot:
-    # Build the Docker image from the Dockerfile in the current directory (.)
     build: .
-    # Name the image for easier management
-    image: discord-moderator-bot
-    # Load environment variables from the .env file in the same directory
-    # Docker Compose will warn if this file is missing, and the bot will fail to start.
+    image: lua-community-bot
     env_file:
       - ./.env
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
