@@ -65,16 +65,17 @@ const stripeIdentityWebhook = new LuaWebhook({
 const validateInformationPreProcessor = new PreProcessor({
   name: 'validate-financial-info',
   description: 'Ensure required information is provided',
-  execute: async (message: any, user: any) => {
+  priority: 1,
+  execute: async (userInstance, messages, channel) => {
     // Ensure user has started onboarding
-    const applications = await Data.search('onboarding_applications', user.email, 1);
+    const applications = await Data.search('onboarding_applications', userInstance.email || '', 1);
     if (applications.length === 0) {
       return {
-        block: true,
+        action: 'block',
         response: "Please start the onboarding process first by providing your email address."
       };
     }
-    return { block: false };
+    return { action: 'proceed' };
   }
 });
 
