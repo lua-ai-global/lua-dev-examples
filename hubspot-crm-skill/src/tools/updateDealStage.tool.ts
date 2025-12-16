@@ -1,5 +1,6 @@
-import { LuaTool, env } from "lua-cli";
+import { LuaTool } from "lua-cli";
 import { z } from "zod";
+import { getHubSpotConfig } from "../utils/hubspotHelpers";
 
 async function getDealById(dealId: string, token: string, baseUrl: string) {
   const url = `${baseUrl}/crm/v3/objects/deals/${dealId}?properties=dealname,dealstage,amount,closedate,pipeline`;
@@ -29,8 +30,7 @@ export default class UpdateDealStageTool implements LuaTool {
   });
 
   async execute(input: z.infer<typeof this.inputSchema>) {
-    const TOKEN = env("HUBSPOT_PRIVATE_APP_TOKEN");
-    const HUBSPOT_BASE = (env("HUBSPOT_API_BASE_URL") || "https://api.hubapi.com").replace(/\/+$/, "");
+    const { token: TOKEN, baseUrl: HUBSPOT_BASE } = getHubSpotConfig();
 
     if (!TOKEN) {
       return { ok: false, error: "Missing HUBSPOT_PRIVATE_APP_TOKEN in environment." };
