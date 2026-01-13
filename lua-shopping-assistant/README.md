@@ -24,6 +24,7 @@ A fully-featured e-commerce shopping assistant using **Lua Platform APIs** for p
 import { LuaAgent, LuaSkill } from "lua-cli";
 import {
   SearchProductsTool,
+  BrowseProductsTool,
   GetProductDetailsTool,
   AddToCartTool,
   ViewCartTool,
@@ -40,7 +41,8 @@ const ecommerceSkill = new LuaSkill({
     This skill helps customers shop and complete purchases.
     
     Shopping Flow:
-    - search_products: When users describe what they want to buy
+    - search_products: When users describe what they want to buy (semantic search)
+    - browse_products: When users want to filter by category, price range, or availability
     - get_product_details: When they want more info about a specific product
     - add_to_cart: When they decide to purchase something
     - view_cart: To review their shopping cart
@@ -49,6 +51,8 @@ const ecommerceSkill = new LuaSkill({
     - track_order: To check order status
     
     Guidelines:
+    - Use search_products for natural language queries like "laptop for students"
+    - Use browse_products for structured queries like "electronics under $500"
     - Always confirm items and quantities before adding to cart
     - Show total price before checkout
     - Ask for shipping address during checkout
@@ -56,6 +60,7 @@ const ecommerceSkill = new LuaSkill({
   `,
   tools: [
     new SearchProductsTool(),
+    new BrowseProductsTool(),
     new GetProductDetailsTool(),
     new AddToCartTool(),
     new ViewCartTool(),
@@ -144,7 +149,46 @@ export class SearchProductsTool implements LuaTool {
   }
 }
 
-// 2. Get Product Details
+// 2. Browse Products by Category/Price (Filter-based)
+export class BrowseProductsTool implements LuaTool {
+  name = "browse_products";
+  description = "Browse products by category, price range, or availability";
+  
+  inputSchema = z.object({
+    category: z.string().optional().describe("Product category"),
+    minPrice: z.number().optional().describe("Minimum price"),
+    maxPrice: z.number().optional().describe("Maximum price"),
+    inStockOnly: z.boolean().optional().describe("Only show in-stock items"),
+    page: z.number().optional().default(1)
+  });
+
+  async execute(input: z.infer<typeof this.inputSchema>) {
+    const filter: Record<string, any> = {};
+    
+    if (input.category) filter.category = input.category;
+    if (input.minPrice !== undefined || input.maxPrice !== undefined) {
+      filter.price = {};
+      if (input.minPrice !== undefined) filter.price.$gte = input.minPrice;
+      if (input.maxPrice !== undefined) filter.price.$lte = input.maxPrice;
+    }
+    if (input.inStockOnly) filter.inStock = true;
+    
+    const results = await Products.get({ page: input.page, limit: 10, filter });
+    
+    return {
+      products: results.data.map(p => ({
+        id: p.id,
+        name: p.name,
+        price: `$${p.price.toFixed(2)}`,
+        category: p.category,
+        inStock: p.inStock ? '✅ In Stock' : '❌ Out of Stock'
+      })),
+      pagination: results.pagination
+    };
+  }
+}
+
+// 3. Get Product Details
 export class GetProductDetailsTool implements LuaTool {
   name = "get_product_details";
   description = "Get detailed information about a specific product";
@@ -175,7 +219,7 @@ export class GetProductDetailsTool implements LuaTool {
   }
 }
 
-// 3. Add to Cart
+// 4. Add to Cart
 export class AddToCartTool implements LuaTool {
   name = "add_to_cart";
   description = "Add a product to the shopping cart";
@@ -230,7 +274,7 @@ export class AddToCartTool implements LuaTool {
   }
 }
 
-// 4. View Cart
+// 5. View Cart
 export class ViewCartTool implements LuaTool {
   name = "view_cart";
   description = "View items in the shopping cart";
@@ -261,7 +305,7 @@ export class ViewCartTool implements LuaTool {
   }
 }
 
-// 5. Remove from Cart
+// 6. Remove from Cart
 export class RemoveFromCartTool implements LuaTool {
   name = "remove_from_cart";
   description = "Remove an item from the shopping cart";
@@ -285,7 +329,7 @@ export class RemoveFromCartTool implements LuaTool {
   }
 }
 
-// 6. Checkout
+// 7. Checkout
 export class CheckoutTool implements LuaTool {
   name = "checkout";
   description = "Complete purchase and create order";
@@ -338,7 +382,7 @@ export class CheckoutTool implements LuaTool {
   }
 }
 
-// 7. Track Order
+// 8. Track Order
 export class TrackOrderTool implements LuaTool {
   name = "track_order";
   description = "Get order status and tracking information";
@@ -393,11 +437,12 @@ lua chat
 
 **Test conversation flow in sandbox mode:**
 
-1. "Search for laptops under $1000"
-2. "Add the MacBook to my cart"
-3. "Show me my cart"
-4. "Checkout with shipping to 123 Main St, New York, NY 10001"
-5. "Track my order"
+1. "Search for laptops" (semantic search)
+2. "Show me electronics under $500" (filter-based browsing)
+3. "Add the MacBook to my cart"
+4. "Show me my cart"
+5. "Checkout with shipping to 123 Main St, New York, NY 10001"
+6. "Track my order"
 
 ## Deployment
 
@@ -470,7 +515,7 @@ lua-shopping-assistant/
 │   ├── index.ts              # Main skill definition
 │   ├── seed.ts               # Seed product data
 │   └── tools/
-│       └── EcommerceTool.ts  # All 7 e-commerce tools
+│       └── EcommerceTool.ts  # All 8 e-commerce tools
 ├── lua.skill.yaml            # Configuration
 ├── package.json              # Dependencies
 ├── tsconfig.json             # TypeScript config

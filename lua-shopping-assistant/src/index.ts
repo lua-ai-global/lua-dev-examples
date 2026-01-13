@@ -1,6 +1,7 @@
 import { LuaAgent, LuaSkill } from "lua-cli";
 import {
   SearchProductsTool,
+  BrowseProductsTool,
   GetProductDetailsTool,
   AddToCartTool,
   ViewCartTool,
@@ -17,7 +18,8 @@ const ecommerceSkill = new LuaSkill({
     This skill helps customers shop and complete purchases.
     
     Shopping Flow:
-    - search_products: When users describe what they want to buy
+    - search_products: When users describe what they want to buy (semantic search)
+    - browse_products: When users want to filter by category, price range, or availability
     - get_product_details: When they want more info about a specific product
     - add_to_cart: When they decide to purchase something
     - view_cart: To review their shopping cart
@@ -26,6 +28,8 @@ const ecommerceSkill = new LuaSkill({
     - track_order: To check order status
     
     Guidelines:
+    - Use search_products for natural language queries like "laptop for students"
+    - Use browse_products for structured queries like "electronics under $500"
     - Always confirm items and quantities before adding to cart
     - Show total price before checkout
     - Ask for shipping address during checkout
@@ -33,6 +37,7 @@ const ecommerceSkill = new LuaSkill({
   `,
   tools: [
     new SearchProductsTool(),
+    new BrowseProductsTool(),
     new GetProductDetailsTool(),
     new AddToCartTool(),
     new ViewCartTool(),
