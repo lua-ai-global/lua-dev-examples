@@ -1,0 +1,121 @@
+{
+  "version": "2.0.0",
+  "compiledAt": "2026-02-02T15:45:57.188Z",
+  "agent": {
+    "name": "Mira",
+    "persona": "You are a friendly and helpful shopping assistant for our online store.\n  \nYour role:\n- Help customers find products they're looking for\n- Provide detailed product information\n- Assist with adding items to cart\n- Guide through the checkout process\n- Help track orders after purchase\n\nCommunication style:\n- Warm and welcoming\n- Enthusiastic about products\n- Patient and helpful\n- Clear about pricing and availability\n- Proactive with suggestions\n\nBest practices:\n- Always confirm product details before adding to cart\n- Mention if items are in stock or out of stock\n- Show total price before checkout\n- Offer product recommendations based on browsing\n- Celebrate successful orders!\n\nWhen to escalate:\n- Complex shipping issues\n- Payment problems\n- Bulk orders (>20 items)\n- Special customization requests"
+  },
+  "primitives": [
+    {
+      "kind": "tool",
+      "name": "search_products",
+      "path": "artifacts/tool/search_products.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-shopping-assistant/src/tools/EcommerceTool.ts",
+      "hash": "ba21c15c96fb3257"
+    },
+    {
+      "kind": "tool",
+      "name": "browse_products",
+      "path": "artifacts/tool/browse_products.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-shopping-assistant/src/tools/EcommerceTool.ts",
+      "hash": "5b3ed68441b06879"
+    },
+    {
+      "kind": "tool",
+      "name": "get_product_details",
+      "path": "artifacts/tool/get_product_details.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-shopping-assistant/src/tools/EcommerceTool.ts",
+      "hash": "3053c4bc2adf3eb6"
+    },
+    {
+      "kind": "tool",
+      "name": "add_to_cart",
+      "path": "artifacts/tool/add_to_cart.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-shopping-assistant/src/tools/EcommerceTool.ts",
+      "hash": "4a45b8b594148de6"
+    },
+    {
+      "kind": "tool",
+      "name": "view_cart",
+      "path": "artifacts/tool/view_cart.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-shopping-assistant/src/tools/EcommerceTool.ts",
+      "hash": "27c59f3a3c9e5ca3"
+    },
+    {
+      "kind": "tool",
+      "name": "remove_from_cart",
+      "path": "artifacts/tool/remove_from_cart.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-shopping-assistant/src/tools/EcommerceTool.ts",
+      "hash": "e282571c7e3d9e6e"
+    },
+    {
+      "kind": "tool",
+      "name": "checkout",
+      "path": "artifacts/tool/checkout.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-shopping-assistant/src/tools/EcommerceTool.ts",
+      "hash": "646f1e2c6997b7ec"
+    },
+    {
+      "kind": "tool",
+      "name": "track_order",
+      "path": "artifacts/tool/track_order.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-shopping-assistant/src/tools/EcommerceTool.ts",
+      "hash": "6d3057df0aa2bd70"
+    }
+  ],
+  "projectFiles": [
+    {
+      "relativePath": "README.md",
+      "hash": "712d90cb70696de7",
+      "size": 14345,
+      "type": "other"
+    },
+    {
+      "relativePath": "env.example",
+      "hash": "677f820f90211b22",
+      "size": 504,
+      "type": "other"
+    },
+    {
+      "relativePath": "lua.skill.yaml",
+      "hash": "5e99ea70ec7ad00f",
+      "size": 170,
+      "type": "config"
+    },
+    {
+      "relativePath": "package.json",
+      "hash": "621b79bff19c9799",
+      "size": 745,
+      "type": "config"
+    },
+    {
+      "relativePath": "src/index.ts",
+      "hash": "9e148ec9fd48856b",
+      "size": 2548,
+      "type": "source"
+    },
+    {
+      "relativePath": "src/seed.ts",
+      "hash": "19a5b1c8eab73fbc",
+      "size": 1325,
+      "type": "source"
+    },
+    {
+      "relativePath": "src/tools/EcommerceTool.ts",
+      "hash": "2adef06a250fdbec",
+      "size": 9386,
+      "type": "source"
+    },
+    {
+      "relativePath": "tsconfig.json",
+      "hash": "0e4307e6c4dc1c28",
+      "size": 402,
+      "type": "config"
+    }
+  ],
+  "config": {
+    "packageJson": "621b79bff19c9799",
+    "tsconfigJson": "0e4307e6c4dc1c28",
+    "luaSkillYaml": "5e99ea70ec7ad00f"
+  }
+}

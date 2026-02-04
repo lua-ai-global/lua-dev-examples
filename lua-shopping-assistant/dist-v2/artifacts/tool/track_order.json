@@ -1,0 +1,16 @@
+{
+  "kind": "tool",
+  "name": "track_order",
+  "description": "Get order status and tracking information",
+  "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-shopping-assistant/src/tools/EcommerceTool.ts",
+  "sourceHash": "2adef06a250fdbec",
+  "metadata": {
+    "pattern": "class",
+    "className": "TrackOrderTool",
+    "hasInputSchema": true,
+    "hasCondition": false,
+    "hasExecute": true
+  },
+  "size": 2450,
+  "hash": "6d3057df0aa2bd70"
+}

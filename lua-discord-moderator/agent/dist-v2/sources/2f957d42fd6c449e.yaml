@@ -1,0 +1,35 @@
+agent:
+  agentId: baseAgent_agent_1761665176807_eqdtuhwkp
+  orgId: 912d3c47-130b-489e-a190-dbe99fe28753
+skills:
+  - name: community-skill
+    version: 1.0.4
+    skillId: 7ccb5efa-0f45-4ca7-863b-a6f306465194
+webhooks:
+  - name: member-join-webhook
+    version: 1.0.3
+    webhookId: 05f457e1-5f80-460a-822e-3fff0153ffd6
+  - name: payment-notifications
+    version: 1.0.0
+    webhookId: 49cdc5f4-76dc-4c6d-97f3-7810b5a0306d
+  - name: new-member
+    version: 1.0.2
+    webhookId: 0257ac91-825b-4a8d-a97f-13da0bc1dda4
+jobs:
+  - jobId: 633e2bcb-6f75-4d6d-b825-860bcbf987cc
+    name: weekly-tip
+    version: 1.0.4
+preprocessors:
+  - name: rate-limiter
+    version: 1.0.11
+    preprocessorId: preprocessor_69126b5e-95fd-4997-b889-fb41d4bef29f
+  - name: analytics
+    version: 1.0.7
+    preprocessorId: preprocessor_53f327b6-777b-4527-afbf-d208e4e37bb9
+postprocessors:
+  - name: add-docs-link
+    version: 1.0.4
+    postprocessorId: postprocessor_86faed63-4969-471d-96a7-4216cd20b905
+mcpServers:
+  - mcpServerId: 3ed89fba-67a6-4398-b6cd-1fac7b148f04
+    name: lua-docs

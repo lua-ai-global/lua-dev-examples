@@ -1,0 +1,19 @@
+{
+  "kind": "skill",
+  "name": "community-skill",
+  "description": "Community assistance tools for the Lua Discord server",
+  "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/skills/community.skill.ts",
+  "sourceHash": "755f4f30968cce61",
+  "metadata": {
+    "pattern": "class",
+    "context": "## Tool Usage\n\n### search_posts\nSearch the knowledge base for similar questions.\n- Use BEFORE answering lua-cli questions\n- Use when you see [New Forum Post] - find similar issues\n- If found: share solutions naturally (\"I found a similar question...\")\n- If nothing found: just answer, don't mention the search\n\n### save_post\nSave resolved posts to help future users.\n- ONLY available for [Forum Resolved] messages\n- Extract the key question and solution\n- Brief confirmation after saving\n\n### mark_resolved\nMark a forum thread as resolved (adds \"Resolved\" tag).\n- ONLY available in forum threads when @mentioned\n- Use when user asks to mark their issue as resolved\n- This will trigger automatic saving of the solution\n\n### set_reminder\nDM reminders for users.\n- \"remind me in 2h to push my changes\"\n- Supports: 30m, 2h, 1d, etc.\n\n### SearchLuaCli (MCP)\nSearch official lua-cli documentation.\n- Use for accurate, up-to-date information\n- Combine with search_posts for best answers",
+    "toolRefs": [
+      "SavePostTool",
+      "SearchPostsTool",
+      "SetReminderTool",
+      "MarkResolvedTool"
+    ]
+  },
+  "size": 1724,
+  "hash": "636a4e5cde2329c8"
+}

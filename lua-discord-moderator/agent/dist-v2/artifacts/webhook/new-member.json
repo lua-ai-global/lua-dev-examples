@@ -1,0 +1,16 @@
+{
+  "kind": "webhook",
+  "name": "new-member",
+  "description": "Welcome new members to the Lua Discord community",
+  "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/webhooks/new-member.ts",
+  "sourceHash": "38c5eb1674ff7d82",
+  "metadata": {
+    "pattern": "class",
+    "hasExecute": true,
+    "hasQuerySchema": false,
+    "hasHeaderSchema": false,
+    "hasBodySchema": true
+  },
+  "size": 233569,
+  "hash": "8729ce9d1b8efbb1"
+}

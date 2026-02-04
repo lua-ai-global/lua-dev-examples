@@ -1,0 +1,14 @@
+{
+  "kind": "preprocessor",
+  "name": "analytics",
+  "description": "Captures interaction data and syncs Discord ID to user profile",
+  "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/preprocessors/analytics.ts",
+  "sourceHash": "744fc8e636056931",
+  "schemas": {},
+  "metadata": {
+    "pattern": "constructor",
+    "hasExecute": true
+  },
+  "size": 2938,
+  "hash": "2fdf5909355f74b9"
+}
