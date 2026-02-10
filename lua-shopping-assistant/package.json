@@ -19,7 +19,7 @@
     "axios": "^1.6.0",
     "inquirer": "^12.9.6",
     "js-yaml": "^4.1.0",
-    "lua-cli": "^3.5.0-alpha.4",
+    "lua-cli": "^3.5.0-alpha.5",
     "openai": "^5.23.0",
     "uuid": "^13.0.0",
     "zod": "^3.24.1"
