@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+node_modules/
+dist/
+.env
+=======
 # Dependencies
 node_modules/
 npm-debug.log*
@@ -96,3 +101,4 @@ template/.lua/
 *.lua.skill.toml
 lua.skill.toml
 *.prompt.*
+>>>>>>> final-submission/master

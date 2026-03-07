@@ -1,0 +1,5 @@
+skill:
+  name: zoho-crm-connector
+  version: 1.0.0
+  description: Advanced Zoho CRM Skill
+  entryPoint: src/index.ts
