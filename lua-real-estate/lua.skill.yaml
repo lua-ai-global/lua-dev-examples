@@ -1,0 +1,18 @@
+agent:
+  agentId: baseAgent_real-estate-agent-1773224705631
+  orgId: 026cc41b-e013-4474-9b65-5a15f8881f92
+skills:
+  - name: tenant-engagement
+    skillId: 6495f094-5511-49f5-9d75-98a8a7f37f2d
+    version: 1.0.3
+  - name: lease-management
+    skillId: 7171edce-f73c-4fc7-a6be-0a7e865bb2a1
+    version: 1.0.3
+webhooks: []
+jobs: []
+preprocessors: []
+postprocessors: []
+mcpServers: []
+backup:
+  lastHash: ec3df470b42c17c55c2eb5801c7c5a032e5e6200209e3d4359fc9298ff735e9f
+  lastPushedAt: '2026-03-16T12:14:46.430Z'
