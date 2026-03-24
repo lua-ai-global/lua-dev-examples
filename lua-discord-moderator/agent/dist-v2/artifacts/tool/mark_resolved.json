@@ -1,0 +1,16 @@
+{
+  "kind": "tool",
+  "name": "mark_resolved",
+  "description": "Mark the current forum thread as resolved. Use when a user asks you to mark their issue as solved.",
+  "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/tools/MarkResolvedTool.ts",
+  "sourceHash": "a1c27f71f6e75afd",
+  "metadata": {
+    "pattern": "class",
+    "className": "MarkResolvedTool",
+    "hasInputSchema": true,
+    "hasCondition": true,
+    "hasExecute": true
+  },
+  "size": 3317,
+  "hash": "ef0b123d3e792a0d"
+}

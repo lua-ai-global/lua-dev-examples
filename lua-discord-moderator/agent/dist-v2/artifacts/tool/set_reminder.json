@@ -1,0 +1,16 @@
+{
+  "kind": "tool",
+  "name": "set_reminder",
+  "description": "Set a reminder for the user. Example: 'remind me in 30 minutes to check my deployment'",
+  "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/tools/SetReminderTool.ts",
+  "sourceHash": "54364d40d201104e",
+  "metadata": {
+    "pattern": "class",
+    "className": "SetReminderTool",
+    "hasInputSchema": true,
+    "hasCondition": false,
+    "hasExecute": true
+  },
+  "size": 3286,
+  "hash": "b881a527ea5224b2"
+}

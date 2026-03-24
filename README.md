@@ -4,7 +4,7 @@
 
 > Production-ready AI agent examples showcasing the Lua Platform capabilities
 
-This repository contains **4 complete, production-ready demo applications** built with Lua CLI v3.0.0. Each demo showcases different platform features and real-world use cases.
+This repository contains **4 complete, production-ready demo applications** built with Lua CLI v3.6.6. Each demo showcases different platform features and real-world use cases.
 
 ---
 
@@ -205,7 +205,7 @@ const postProcessor = new PostProcessor({
 All demos use:
 - **TypeScript** - Full type safety
 - **Zod** - Schema validation
-- **Lua CLI 3.0.1** - Latest version
+- **Lua CLI 3.6.6** - Latest version
 - **Node.js** - Runtime environment
 
 Additional integrations:

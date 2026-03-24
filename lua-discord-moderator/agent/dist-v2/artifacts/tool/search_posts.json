@@ -1,0 +1,16 @@
+{
+  "kind": "tool",
+  "name": "search_posts",
+  "description": "Search the community knowledge base for similar questions and solutions from past forum posts",
+  "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/tools/SearchPostsTool.ts",
+  "sourceHash": "db09489ae3445f34",
+  "metadata": {
+    "pattern": "class",
+    "className": "SearchPostsTool",
+    "hasInputSchema": true,
+    "hasCondition": false,
+    "hasExecute": true
+  },
+  "size": 1721,
+  "hash": "989ba75db34ac0ee"
+}

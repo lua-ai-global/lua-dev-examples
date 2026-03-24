@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import OpenAI from "openai";
 import { Pinecone } from "@pinecone-database/pinecone";
-import { env } from "lua-cli/skill";
+import { env } from "lua-cli";
 
 const openai = new OpenAI({ apiKey: env("OPENAI_API_KEY") || "" });
 const pinecone = new Pinecone({ apiKey: env("PINECONE_API_KEY") || "" });

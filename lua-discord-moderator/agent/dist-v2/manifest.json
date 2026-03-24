@@ -1,0 +1,209 @@
+{
+  "version": "2.0.0",
+  "compiledAt": "2026-02-02T17:56:55.807Z",
+  "agent": {
+    "name": "lua-community-assistant",
+    "persona": "You are Lua, the friendly community assistant for the Lua Discord server.\n\n## IMPORTANT: What is \"Lua\"?\n\"Lua\" in this context refers to the **Lua AI Platform** (heylua.ai) - a TypeScript-based platform for building, deploying, and scaling AI agents. It is NOT the Lua programming language.\n\nKey facts about the Lua AI Platform:\n- CLI tool: `lua-cli` (installed via `npm i -g lua-cli`)\n- Written in TypeScript, not Lua scripting language\n- Used to build AI agents with skills, tools, webhooks, jobs\n- Documentation: https://docs.heylua.ai\n\nIf someone asks about the Lua programming language (tables, metatables, coroutines, etc.), politely clarify that this community is for the Lua AI Platform, not the programming language.\n\n## Personality\nFriendly, encouraging, technical but approachable. Celebrate wins! Keep responses concise.\n\n## Message Context\nMessages are prefixed with context:\n- [DM from user#1234] - Direct message, be personal\n- [#ask-lua | user#1234] - Public channel, others will read this\n- [@mention | user#1234] - Quick mention, be concise\n- [New Forum Post | user#1234] - New question in forums\n- [Forum Resolved | user#1234] - Thread was marked resolved\n\n## Response Style\n- Concise and helpful\n- Use ``` for code blocks\n- Don't mention failed searches - just answer directly\n- For [Forum Resolved]: briefly confirm the save, don't write an essay"
+  },
+  "primitives": [
+    {
+      "kind": "skill",
+      "name": "community-skill",
+      "description": "Community assistance tools for the Lua Discord server",
+      "path": "artifacts/skill/community-skill.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/skills/community.skill.ts",
+      "hash": "636a4e5cde2329c8",
+      "context": "## Tool Usage\n\n### search_posts\nSearch the knowledge base for similar questions.\n- Use BEFORE answering lua-cli questions\n- Use when you see [New Forum Post] - find similar issues\n- If found: share solutions naturally (\"I found a similar question...\")\n- If nothing found: just answer, don't mention the search\n\n### save_post\nSave resolved posts to help future users.\n- ONLY available for [Forum Resolved] messages\n- Extract the key question and solution\n- Brief confirmation after saving\n\n### mark_resolved\nMark a forum thread as resolved (adds \"Resolved\" tag).\n- ONLY available in forum threads when @mentioned\n- Use when user asks to mark their issue as resolved\n- This will trigger automatic saving of the solution\n\n### set_reminder\nDM reminders for users.\n- \"remind me in 2h to push my changes\"\n- Supports: 30m, 2h, 1d, etc.\n\n### SearchLuaCli (MCP)\nSearch official lua-cli documentation.\n- Use for accurate, up-to-date information\n- Combine with search_posts for best answers",
+      "tools": [
+        "save_post",
+        "search_posts",
+        "set_reminder",
+        "mark_resolved"
+      ]
+    },
+    {
+      "kind": "tool",
+      "name": "save_post",
+      "description": "Save a resolved forum post (question + solution) to the community knowledge base for future reference",
+      "path": "artifacts/tool/save_post.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/tools/SavePostTool.ts",
+      "hash": "e16270ecbc4c25fc"
+    },
+    {
+      "kind": "tool",
+      "name": "search_posts",
+      "description": "Search the community knowledge base for similar questions and solutions from past forum posts",
+      "path": "artifacts/tool/search_posts.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/tools/SearchPostsTool.ts",
+      "hash": "989ba75db34ac0ee"
+    },
+    {
+      "kind": "tool",
+      "name": "set_reminder",
+      "description": "Set a reminder for the user. Example: 'remind me in 30 minutes to check my deployment'",
+      "path": "artifacts/tool/set_reminder.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/tools/SetReminderTool.ts",
+      "hash": "b881a527ea5224b2"
+    },
+    {
+      "kind": "tool",
+      "name": "mark_resolved",
+      "description": "Mark the current forum thread as resolved. Use when a user asks you to mark their issue as solved.",
+      "path": "artifacts/tool/mark_resolved.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/tools/MarkResolvedTool.ts",
+      "hash": "ef0b123d3e792a0d"
+    },
+    {
+      "kind": "webhook",
+      "name": "new-member",
+      "description": "Welcome new members to the Lua Discord community",
+      "path": "artifacts/webhook/new-member.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/webhooks/new-member.ts",
+      "hash": "8729ce9d1b8efbb1"
+    },
+    {
+      "kind": "job",
+      "name": "weekly-tip",
+      "description": "Posts a weekly lua-cli tip to the community",
+      "path": "artifacts/job/weekly-tip.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/jobs/weekly-tip.ts",
+      "hash": "53efd1cfa308034d",
+      "schedule": {
+        "type": "cron"
+      }
+    },
+    {
+      "kind": "preprocessor",
+      "name": "rate-limiter",
+      "description": "Per-user rate limiting for DMs only",
+      "path": "artifacts/preprocessor/rate-limiter.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/preprocessors/rate-limiter.ts",
+      "hash": "b22abdd76807968c"
+    },
+    {
+      "kind": "preprocessor",
+      "name": "analytics",
+      "description": "Captures interaction data and syncs Discord ID to user profile",
+      "path": "artifacts/preprocessor/analytics.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/preprocessors/analytics.ts",
+      "hash": "2fdf5909355f74b9"
+    },
+    {
+      "kind": "postprocessor",
+      "name": "add-docs-link",
+      "description": "Adds relevant documentation links to responses",
+      "path": "artifacts/postprocessor/add-docs-link.js",
+      "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/postprocessors/add-docs-link.ts",
+      "hash": "f83063ca1fc4ae7d"
+    }
+  ],
+  "projectFiles": [
+    {
+      "relativePath": "lua.skill.yaml",
+      "hash": "2f957d42fd6c449e",
+      "size": 1060,
+      "type": "config"
+    },
+    {
+      "relativePath": "package.json",
+      "hash": "533f90384658f189",
+      "size": 530,
+      "type": "config"
+    },
+    {
+      "relativePath": "src/index.ts",
+      "hash": "072cf1ec0643e159",
+      "size": 2932,
+      "type": "source"
+    },
+    {
+      "relativePath": "src/jobs/weekly-tip.ts",
+      "hash": "cefe2d8665d75d05",
+      "size": 6250,
+      "type": "source"
+    },
+    {
+      "relativePath": "src/mcp/lua-docs.ts",
+      "hash": "dde1faa18ed14a80",
+      "size": 343,
+      "type": "source"
+    },
+    {
+      "relativePath": "src/postprocessors/add-docs-link.ts",
+      "hash": "cb04eda9f12b9b19",
+      "size": 13124,
+      "type": "source"
+    },
+    {
+      "relativePath": "src/preprocessors/analytics.ts",
+      "hash": "744fc8e636056931",
+      "size": 3786,
+      "type": "source"
+    },
+    {
+      "relativePath": "src/preprocessors/rate-limiter.ts",
+      "hash": "0a705982402a9ad0",
+      "size": 1927,
+      "type": "source"
+    },
+    {
+      "relativePath": "src/services/DiscordService.ts",
+      "hash": "c161def36720ef1a",
+      "size": 9259,
+      "type": "source"
+    },
+    {
+      "relativePath": "src/skills/community.skill.ts",
+      "hash": "755f4f30968cce61",
+      "size": 1546,
+      "type": "source"
+    },
+    {
+      "relativePath": "src/tools/MarkResolvedTool.ts",
+      "hash": "a1c27f71f6e75afd",
+      "size": 1718,
+      "type": "source"
+    },
+    {
+      "relativePath": "src/tools/SavePostTool.ts",
+      "hash": "75f93a6c0b84644d",
+      "size": 1883,
+      "type": "source"
+    },
+    {
+      "relativePath": "src/tools/SearchPostsTool.ts",
+      "hash": "db09489ae3445f34",
+      "size": 1462,
+      "type": "source"
+    },
+    {
+      "relativePath": "src/tools/SetReminderTool.ts",
+      "hash": "54364d40d201104e",
+      "size": 2633,
+      "type": "source"
+    },
+    {
+      "relativePath": "src/utils/discord-context.ts",
+      "hash": "8b144212d1b063d6",
+      "size": 870,
+      "type": "source"
+    },
+    {
+      "relativePath": "src/webhooks/new-member.ts",
+      "hash": "38c5eb1674ff7d82",
+      "size": 2601,
+      "type": "source"
+    },
+    {
+      "relativePath": "tsconfig.json",
+      "hash": "0e4307e6c4dc1c28",
+      "size": 402,
+      "type": "config"
+    }
+  ],
+  "config": {
+    "packageJson": "533f90384658f189",
+    "tsconfigJson": "0e4307e6c4dc1c28",
+    "luaSkillYaml": "2f957d42fd6c449e"
+  }
+}
