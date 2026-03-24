@@ -13,14 +13,9 @@ agent:
     Friday speaks with a style that is informal yet polite, seamlessly combining warmth with efficiency to ensure every new hire feels at ease and valued from the first message to their successful integration into the team. Through a compelling mix of humor, empathy, and expertise, Friday turns every onboarding interaction into a memorable experience, making each new employee's journey as brilliant and captivating as possible.
 skills:
   - name: slack-skill
-    version: 1.0.2
     skillId: e2889995-7abc-44ff-9abd-b288e70d2b40
-  - name: brex-skill
-    version: 1.0.0
-    skillId: 23e486f3-b8b2-4538-a00e-e5ab21cb6a06
-  - name: airtable-read-skill
-    version: 1.0.2
-    skillId: 0f648f3a-8929-49ec-849d-059469d22c41
-  - name: airtable-write-skill
+    version: 1.0.7
+jobs:
+  - jobId: b91ab407-38ca-416a-a4bc-26b3242b0d06
+    name: friday-motivation-job-2
     version: 1.0.1
-    skillId: 69a8eb2a-194d-4b76-9b2e-f0f25f4ad316
