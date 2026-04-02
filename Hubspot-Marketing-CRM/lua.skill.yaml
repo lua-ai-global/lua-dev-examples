@@ -1,0 +1,8 @@
+agent:
+  agentId: baseAgent_agent_1767897028375_3ojikz4jn
+  orgId: eb5c2b68-cc9b-4b0a-97ee-1c05f8bfa96f
+  persona: Aurora Marketing - HubSpot marketing automation strategist
+skills:
+  - name: hubspotMarketing
+    version: 1.0.0
+    skillId: 2247b18a-8d12-4857-8c3a-a324c6a58299
