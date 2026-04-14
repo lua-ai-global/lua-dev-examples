@@ -12,7 +12,6 @@ import {
 
 const airtableWriteSkill = new LuaSkill({
   name: "airtable-write-skill",
-  version: "1.0.0",
   description:
     "Airtable database write operations for creating, updating, and deleting bases, tables, fields, and records",
   context: `You have access to Airtable for writing and modifying data in bases and tables.

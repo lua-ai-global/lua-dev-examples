@@ -1,6 +1,14 @@
 agent:
-  agentId: "baseAgent_agent_1760547135646_2hayflunz"
-  orgId: "411771b9-ceb0-4695-9f79-75bf2d5cc93a"
-
+  agentId: baseAgent_agent_1774316509493_1meupqh6s
+  orgId: d87c5e6e-a3a2-452e-824c-a7fd3a84ab5c
 skills:
-  # Skills will be auto-generated during compilation
+  - name: financial-services
+    skillId: 9bed7b57-bf62-4d5a-8d1a-039423f81ccd
+    version: 1.0.4
+jobs:
+  - jobId: 34a07e55-91a6-4dd9-9ec6-5e2d43bc09df
+    name: application-follow-up
+    version: 1.0.4
+backup:
+  lastHash: a668652bc27b1a29c570abbabf1bec818accfc5764def238599c55ef76dc2d70
+  lastPushedAt: '2026-03-24T03:14:13.525Z'

@@ -1,8 +1,8 @@
 import { LuaJob } from "lua-cli";
 
 const fridayMotivationJob = new LuaJob({
-  name: "friday-motivation-job",
-  description: "Sends motivational messages every Friday morning with a 'no prod deployments' reminder",
+  name: "friday-motivation-job-2",
+  description: "Sends motivational messages every Friday morning with a 'no prod deployments' joke",
   schedule: {
     type: "cron",
     expression: "0 11 * * 5"
@@ -13,7 +13,7 @@ const fridayMotivationJob = new LuaJob({
     const user = await job.user();
     await user.send([{
       type: "text",
-      text: `It's Friday morning! Craft an uplifting, energetic message for the team with a humorous reminder about NOT pushing to production on Fridays. Post it to the #general channel using send_slack_message. Be creative and make it fun!`
+      text: `It's Friday morning! Craft an uplifting, energetic message for the team with a humorous joke about NOT pushing to production on Fridays. Post it to the #general channel using send_slack_message. Be creative and make it fun!`
     }]);
   },
 });

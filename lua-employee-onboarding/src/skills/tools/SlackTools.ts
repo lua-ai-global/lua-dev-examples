@@ -12,7 +12,6 @@ export class SendSlackMessageTool implements LuaTool {
   description = "Send a message to a Slack channel. Craft creative, personalized messages for announcements, updates, or communications. Use this for new employee announcements or any team communication.";
 
   inputSchema = z.object({
-    channelId: z.string().describe("Slack channel ID where to send the message"),
     text: z.string().describe("The message text you've crafted. Be creative, warm, and engaging! Can use Slack markdown formatting."),
     threadTs: z.string().optional().describe("Thread timestamp if replying to a thread (optional)"),
   });
@@ -30,7 +29,6 @@ export class SendSlackMessageTool implements LuaTool {
 
       const slackService = new SlackService(slackBotToken);
       const result = await slackService.postMessage({
-        channelId: input.channelId,
         text: input.text,
         threadTs: input.threadTs,
       });

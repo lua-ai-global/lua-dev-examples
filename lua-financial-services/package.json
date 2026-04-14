@@ -1,7 +1,7 @@
 {
-  "name": "lua-skill",
-  "version": "1.0.1-beta.0",
-  "description": "",
+  "name": "lua-financial-services",
+  "version": "1.0.0",
+  "description": "Generalised financial services demo agent — bank accounts, personal loans, and business loans via WhatsApp. Works across multiple African and global markets.",
   "license": "ISC",
   "author": "",
   "type": "module",
