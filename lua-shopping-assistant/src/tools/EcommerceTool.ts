@@ -14,8 +14,8 @@ export class SearchProductsTool implements LuaTool {
   async execute(input: z.infer<typeof this.inputSchema>) {
     const results = await Products.search(input.query);
     
-    // Filter by max price if specified
-    let products = results.data;
+    // Products.search returns ProductSearchInstance — use .products (no .data)
+    let products = results.products;
     if (input.maxPrice) {
       products = products.filter(p => p.price <= input.maxPrice);
     }
@@ -72,8 +72,9 @@ export class BrowseProductsTool implements LuaTool {
       filter
     });
     
+    // Products.get returns ProductPaginationInstance — use .map() directly (no .data)
     return {
-      products: results.data.map(p => ({
+      products: results.map(p => ({
         id: p.id,
         name: p.name,
         price: `$${p.price.toFixed(2)}`,
