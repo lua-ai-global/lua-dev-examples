@@ -58,7 +58,6 @@ const ticketFollowUpJob = new LuaJob({
     const tickets = await Data.search('support_tickets', 'status:open', 50);
     const user = await job.user();
     
-    // Data.search returns flat DataEntryInstance[] — use .length, not .count
     if (tickets.length > 0) {
       await user.send([{
         type: 'text',
