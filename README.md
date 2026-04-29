@@ -4,7 +4,7 @@
 
 > Production-ready AI agent examples showcasing the Lua Platform capabilities
 
-This repository contains **4 complete, production-ready demo applications** Built with Lua CLI v3.11.0. Each demo showcases different platform features and real-world use cases.
+This repository contains **4 complete, production-ready demo applications** Built with Lua CLI v3.13.0. Each demo showcases different platform features and real-world use cases.
 
 ---
 
