@@ -1,0 +1,22 @@
+{
+  "name": "lua-whatsapp-flow-otp",
+  "version": "1.0.0",
+  "description": "Minimal example showing how to send a WhatsApp Flow as an interactive OTP / verification form using the ::: flow component.",
+  "license": "ISC",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "lua-cli": "^3.15.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.9.2"
+  }
+}

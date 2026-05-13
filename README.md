@@ -68,7 +68,24 @@ This repository contains **4 complete, production-ready demo applications** Buil
 
 ---
 
-### 4. 🏨 [Hotel Booking Agent](./lua-hotel-agent)
+### 4. 📲 [WhatsApp Flow — OTP](./lua-whatsapp-flow-otp)
+**Agent:** Verification Bot
+**Use Case:** Send an interactive WhatsApp Flow for secure OTP / verification-code entry
+
+**Features:**
+- Sends a `::: flow` block that WhatsApp renders as a CTA button + multi-screen form
+- Demonstrates the "tool returns `rawInsights`, agent outputs verbatim" pattern
+- Handles the `User completed a WhatsApp Flow. Submitted data: …` follow-up
+
+**APIs Used:** WhatsApp Flows (Meta) — Flow must be published in WhatsApp Manager
+
+**Perfect for:** OTP entry, account verification, anything that benefits from hidden-input form UI
+
+[View Demo →](./lua-whatsapp-flow-otp)
+
+---
+
+### 5. 🏨 [Hotel Booking Agent](./lua-hotel-agent)
 **Agent:** Hotel Concierge  
 **Use Case:** Hotel reservations and guest services
 
