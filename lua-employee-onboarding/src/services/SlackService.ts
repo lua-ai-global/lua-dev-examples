@@ -33,18 +33,13 @@ export default class SlackService {
    * Post a message to a Slack channel
    */
   async postMessage(params: {
-    channelId?: string;
     text?: string;
     blocks?: any[];
     threadTs?: string;
   }): Promise<{ success: boolean; message?: string; ts?: string; error?: string }> {
     try {
-      if (!params.channelId) {
-        params.channelId = GENERAL_CHANNEL_ID;
-      }
-
       const response = await this.client.post('/chat.postMessage', {
-        channel: params.channelId,
+        channel: GENERAL_CHANNEL_ID,
         text: params.text,
         blocks: params.blocks,
         thread_ts: params.threadTs,

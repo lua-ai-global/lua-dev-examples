@@ -1,0 +1,16 @@
+{
+  "kind": "tool",
+  "name": "view_cart",
+  "description": "View items in the shopping cart",
+  "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-shopping-assistant/src/tools/EcommerceTool.ts",
+  "sourceHash": "2adef06a250fdbec",
+  "metadata": {
+    "pattern": "class",
+    "className": "ViewCartTool",
+    "hasInputSchema": true,
+    "hasCondition": false,
+    "hasExecute": true
+  },
+  "size": 2230,
+  "hash": "27c59f3a3c9e5ca3"
+}

@@ -1,0 +1,16 @@
+{
+  "kind": "tool",
+  "name": "add_to_cart",
+  "description": "Add a product to the shopping cart",
+  "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-shopping-assistant/src/tools/EcommerceTool.ts",
+  "sourceHash": "2adef06a250fdbec",
+  "metadata": {
+    "pattern": "class",
+    "className": "AddToCartTool",
+    "hasInputSchema": true,
+    "hasCondition": false,
+    "hasExecute": true
+  },
+  "size": 2658,
+  "hash": "4a45b8b594148de6"
+}

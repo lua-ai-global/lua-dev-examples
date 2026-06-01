@@ -8,7 +8,6 @@ import {
 
 const airtableReadSkill = new LuaSkill({
   name: "airtable-read-skill",
-  version: "1.0.0",
   description:
     "Airtable database read operations for querying bases, tables, and records",
   context: `You have access to Airtable for reading and querying data from bases and tables.

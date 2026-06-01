@@ -4,7 +4,7 @@
 
 > Production-ready AI agent examples showcasing the Lua Platform capabilities
 
-This repository contains **4 complete, production-ready demo applications** built with Lua CLI v3.0.0. Each demo showcases different platform features and real-world use cases.
+This repository contains **4 complete, production-ready demo applications** Built with Lua CLI v3.13.0. Each demo showcases different platform features and real-world use cases.
 
 ---
 
@@ -68,7 +68,24 @@ This repository contains **4 complete, production-ready demo applications** buil
 
 ---
 
-### 4. 🏨 [Hotel Booking Agent](./lua-hotel-agent)
+### 4. 📲 [WhatsApp Flow — OTP](./lua-whatsapp-flow-otp)
+**Agent:** Verification Bot
+**Use Case:** Send an interactive WhatsApp Flow for secure OTP / verification-code entry
+
+**Features:**
+- Sends a `::: flow` block that WhatsApp renders as a CTA button + multi-screen form
+- Demonstrates the "tool returns `rawInsights`, agent outputs verbatim" pattern
+- Handles the `User completed a WhatsApp Flow. Submitted data: …` follow-up
+
+**APIs Used:** WhatsApp Flows (Meta) — Flow must be published in WhatsApp Manager
+
+**Perfect for:** OTP entry, account verification, anything that benefits from hidden-input form UI
+
+[View Demo →](./lua-whatsapp-flow-otp)
+
+---
+
+### 5. 🏨 [Hotel Booking Agent](./lua-hotel-agent)
 **Agent:** Hotel Concierge  
 **Use Case:** Hotel reservations and guest services
 
@@ -205,7 +222,7 @@ const postProcessor = new PostProcessor({
 All demos use:
 - **TypeScript** - Full type safety
 - **Zod** - Schema validation
-- **Lua CLI 3.0.1** - Latest version
+- **Lua CLI 3.6.6** - Latest version
 - **Node.js** - Runtime environment
 
 Additional integrations:

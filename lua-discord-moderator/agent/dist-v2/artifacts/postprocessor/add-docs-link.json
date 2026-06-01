@@ -1,0 +1,14 @@
+{
+  "kind": "postprocessor",
+  "name": "add-docs-link",
+  "description": "Adds relevant documentation links to responses",
+  "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/postprocessors/add-docs-link.ts",
+  "sourceHash": "cb04eda9f12b9b19",
+  "schemas": {},
+  "metadata": {
+    "pattern": "constructor",
+    "hasExecute": true
+  },
+  "size": 9621,
+  "hash": "f83063ca1fc4ae7d"
+}

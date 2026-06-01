@@ -1,0 +1,14 @@
+{
+  "kind": "preprocessor",
+  "name": "rate-limiter",
+  "description": "Per-user rate limiting for DMs only",
+  "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/preprocessors/rate-limiter.ts",
+  "sourceHash": "0a705982402a9ad0",
+  "schemas": {},
+  "metadata": {
+    "pattern": "constructor",
+    "hasExecute": true
+  },
+  "size": 1818,
+  "hash": "b22abdd76807968c"
+}

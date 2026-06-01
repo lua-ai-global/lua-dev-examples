@@ -14,5 +14,6 @@
       "@/services/*": ["src/services/*"]
     }
   },
-  "exclude": ["dist", "node_modules"]
+  "include": ["src"],
+  "exclude": ["dist", "dist-v2", "node_modules"]
 }

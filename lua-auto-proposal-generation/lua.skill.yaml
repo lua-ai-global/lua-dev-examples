@@ -1,0 +1,24 @@
+agent:
+  agentId: baseAgent_auto-proposal-generation-agent-1773224976963
+  orgId: 026cc41b-e013-4474-9b65-5a15f8881f92
+skills:
+  - name: client-discovery-skill
+    skillId: 67a46637-ff57-4c33-8dbf-e8b8cb22a6a6
+    version: 1.0.2
+  - name: scope-pricing-skill
+    skillId: c2a0828e-0c58-4440-96db-8a04465fb451
+    version: 1.0.2
+  - name: proposal-assembly-skill
+    skillId: 9fe43c53-ffd1-4f99-bebe-91b10c6d3a2b
+    version: 1.0.2
+  - name: pipeline-skill
+    skillId: d5be1464-a530-41c1-8378-6ff61d87db7d
+    version: 1.0.2
+webhooks: []
+jobs: []
+preprocessors: []
+postprocessors: []
+mcpServers: []
+backup:
+  lastHash: 599c74b0af01b629d8862fc2238d384b4c4b075ee02ead5defe1258589c14f72
+  lastPushedAt: '2026-03-16T12:25:28.620Z'

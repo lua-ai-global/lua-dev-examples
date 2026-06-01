@@ -1,0 +1,16 @@
+{
+  "kind": "tool",
+  "name": "save_post",
+  "description": "Save a resolved forum post (question + solution) to the community knowledge base for future reference",
+  "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/tools/SavePostTool.ts",
+  "sourceHash": "75f93a6c0b84644d",
+  "metadata": {
+    "pattern": "class",
+    "className": "SavePostTool",
+    "hasInputSchema": true,
+    "hasCondition": true,
+    "hasExecute": true
+  },
+  "size": 1745,
+  "hash": "e16270ecbc4c25fc"
+}

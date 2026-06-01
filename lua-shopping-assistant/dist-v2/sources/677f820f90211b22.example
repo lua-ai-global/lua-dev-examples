@@ -1,0 +1,17 @@
+# Example environment variables file
+# Copy this to .env and update with your actual API keys
+
+# OpenAI API Key (for AI tools)
+OPENAI_API_KEY=your-openai-api-key-here
+
+# Pinecone API Key (for vector search tools)  
+PINECONE_API_KEY=your-pinecone-api-key-here
+
+# Stripe API Key (for payment tools)
+STRIPE_SECRET_KEY=your-stripe-secret-key-here
+
+# Custom application settings
+BASE_URL=http://localhost:3000
+API_KEY=your-api-key-here
+
+# Note: Values in lua.skill.yaml will override values in this .env file

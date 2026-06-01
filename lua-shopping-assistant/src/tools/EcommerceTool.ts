@@ -15,7 +15,7 @@ export class SearchProductsTool implements LuaTool {
     const results = await Products.search(input.query);
     
     // Filter by max price if specified
-    let products = results.data;
+    let products = results.products;
     if (input.maxPrice) {
       products = products.filter(p => p.price <= input.maxPrice);
     }
@@ -73,7 +73,7 @@ export class BrowseProductsTool implements LuaTool {
     });
     
     return {
-      products: results.data.map(p => ({
+      products: results.map(p => ({
         id: p.id,
         name: p.name,
         price: `$${p.price.toFixed(2)}`,

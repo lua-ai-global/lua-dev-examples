@@ -1,0 +1,16 @@
+{
+  "kind": "job",
+  "name": "weekly-tip",
+  "description": "Posts a weekly lua-cli tip to the community",
+  "sourcePath": "/Users/raresastilean/Documents/Lua/Repos/lua-dev-examples/lua-discord-moderator/agent/src/jobs/weekly-tip.ts",
+  "sourceHash": "cefe2d8665d75d05",
+  "metadata": {
+    "pattern": "class",
+    "scheduleType": "cron",
+    "hasExecute": true,
+    "hasTimeout": false,
+    "hasRetry": false
+  },
+  "size": 236370,
+  "hash": "53efd1cfa308034d"
+}
