@@ -96,3 +96,6 @@ template/.lua/
 *.lua.skill.toml
 lua.skill.toml
 *.prompt.*
+
+# Claude Code
+CLAUDE.md
