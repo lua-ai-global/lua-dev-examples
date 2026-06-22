@@ -1,5 +1,6 @@
 import { LuaAgent, LuaMCPServer } from "lua-cli";
 import slackSkill from "./skills/slack.skill";
+import onboardingOutreachSkill from "./skills/onboarding-outreach.skill";
 import fridayMotivationJob from "./jobs/FridayMotivationJob";
 
 const luaDocs = new LuaMCPServer({
@@ -68,7 +69,7 @@ You have access to the Lua platform documentation via the lua-docs MCP server. W
 You have tools to send messages to the #general channel on Slack. When sending announcements, send only the announcement -- no confirmation messages, no follow-up chatter.
 `,
     
-    skills: [ slackSkill ],
+    skills: [ slackSkill, onboardingOutreachSkill ],
     jobs: [ fridayMotivationJob ],
     mcpServers: [ luaDocs ],
 });
