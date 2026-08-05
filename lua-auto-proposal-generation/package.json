@@ -18,6 +18,7 @@
     "zod": "^3.24.1"
   },
   "overrides": {
+    "undici@6": "^6.28.0",
     "brace-expansion": "^5.0.9",
     "postcss@8": "^8.5.12"
   },
