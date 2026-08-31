@@ -48,6 +48,10 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const CORE_DRAINING_CODE = "CORE_DRAINING";
+const DEFAULT_CORE_DRAIN_RETRY_MS = 1000;
+const MAX_CORE_DRAIN_RETRY_MS = 5000;
+
 // ============================================================
 // CONFIGURATION
 // ============================================================
@@ -62,10 +66,6 @@ const config = {
   agentId: process.env.LUA_AGENT_ID!,
   apiUrl: process.env.LUA_API_URL || "https://api.heylua.ai",
   webhookUrl: process.env.LUA_WEBHOOK_URL || "https://webhook.heylua.ai",
-
-  // Retry settings
-  maxRetries: 3,
-  retryDelay: 1000,
 };
 
 // Validate required config
@@ -132,7 +132,7 @@ async function callLuaApi(
   endpoint: string,
   data: any,
   sessionId: string,
-  retries = config.maxRetries
+  retries = 1
 ): Promise<any> {
   try {
     const response = await axios.post(`${config.apiUrl}${endpoint}`, data, {
@@ -145,18 +145,16 @@ async function callLuaApi(
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError;
+    const drainDelayMs = coreDrainRetryDelayMs(axiosError);
 
-    // Don't retry on 4xx errors
-    if (axiosError.response?.status && axiosError.response.status < 500) {
-      log.error(`API error (${axiosError.response.status})`, axiosError.response.data);
-      throw error;
+    if (drainDelayMs !== null && retries > 0) {
+      log.info(`Lua is draining before the turn starts. Retrying in ${drainDelayMs}ms.`);
+      await sleep(drainDelayMs);
+      return callLuaApi(endpoint, data, sessionId, retries - 1);
     }
 
-    // Retry on network/5xx errors
-    if (retries > 0) {
-      log.info(`Retrying API call... (${retries} attempts left)`);
-      await sleep(config.retryDelay);
-      return callLuaApi(endpoint, data, sessionId, retries - 1);
+    if (axiosError.response?.status) {
+      log.error(`API error (${axiosError.response.status})`, axiosError.response.data);
     }
 
     throw error;
@@ -179,6 +177,67 @@ async function callWebhook(webhookName: string, data: any): Promise<any> {
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function coreDrainRetryDelayMs(error: AxiosError): number | null {
+  if (error.response?.status !== 503) {
+    return null;
+  }
+
+  const payload = error.response.data;
+  if (!isCoreDrainingPayload(payload)) {
+    return null;
+  }
+
+  return retryAfterMs(error.response.headers["retry-after"]);
+}
+
+function isCoreDrainingPayload(payload: unknown): payload is {
+  error: { code: string; message: string; retryable: true };
+} {
+  if (!payload || typeof payload !== "object") {
+    return false;
+  }
+
+  const error = (payload as { error?: unknown }).error;
+  return (
+    !!error &&
+    typeof error === "object" &&
+    (error as { code?: unknown }).code === CORE_DRAINING_CODE &&
+    typeof (error as { message?: unknown }).message === "string" &&
+    (error as { retryable?: unknown }).retryable === true
+  );
+}
+
+function retryAfterMs(header: unknown): number {
+  const value = Array.isArray(header) ? header[0] : header;
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return clampRetryDelay(value * 1000);
+  }
+  if (typeof value !== "string") {
+    return DEFAULT_CORE_DRAIN_RETRY_MS;
+  }
+
+  const trimmed = value.trim();
+  const seconds = /^\d+(?:\.\d+)?$/.test(trimmed) ? Number(trimmed) : Number.NaN;
+  if (Number.isFinite(seconds)) {
+    return clampRetryDelay(seconds * 1000);
+  }
+
+  const timestamp = Date.parse(trimmed);
+  if (Number.isNaN(timestamp)) {
+    return DEFAULT_CORE_DRAIN_RETRY_MS;
+  }
+
+  return clampRetryDelay(timestamp - Date.now());
+}
+
+function clampRetryDelay(ms: number): number {
+  if (!Number.isFinite(ms)) {
+    return DEFAULT_CORE_DRAIN_RETRY_MS;
+  }
+
+  return Math.min(Math.max(0, ms), MAX_CORE_DRAIN_RETRY_MS);
 }
 
 interface DiscordContext {
