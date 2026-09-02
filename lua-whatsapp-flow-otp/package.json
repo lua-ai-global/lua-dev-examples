@@ -11,7 +11,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "lua-cli": "^3.29.1",
+    "lua-cli": "^3.30.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {
