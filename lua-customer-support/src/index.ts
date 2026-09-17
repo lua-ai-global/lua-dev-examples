@@ -5,6 +5,7 @@ import {
   GetTicketStatusTool,
   UpdateTicketTool
 } from "./tools/SupportTools";
+import { HandOffToColleagueTool } from "./tools/GroupChatTools";
 
 // Support skill
 const supportSkill = new LuaSkill({
@@ -23,6 +24,7 @@ const supportSkill = new LuaSkill({
     Escalate complex issues to human agents.
   `,
   tools: [
+    new HandOffToColleagueTool(),
     new SearchKnowledgeBaseTool(),
     new CreateTicketTool(),
     new GetTicketStatusTool(),
