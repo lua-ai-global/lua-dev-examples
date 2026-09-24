@@ -13,7 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "lua-cli": "^3.39.2",
+    "lua-cli": "^3.39.3",
     "zod": "^3.24.1"
   },
   "overrides": {
