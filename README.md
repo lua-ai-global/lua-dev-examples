@@ -104,6 +104,25 @@ This repository contains **4 complete, production-ready demo applications** Buil
 
 ---
 
+### 6. 🔗 [Linear OAuth — an agent that handles OAuth itself](./lua-linear-oauth)
+**Agent:** Linear OAuth example
+**Use Case:** Link an end user's own Linear account during a conversation
+
+**Features:**
+- The agent sends an authorize link and exchanges the code the user pastes back
+- Uses the hosted code page at `https://heylua.ai/oauth/code` as the callback URL
+- Per-user tokens in a `Data` collection, never returned to the model
+- **Scheduled job** that refreshes tokens before they expire
+- Asks the user to link again when a token can no longer be refreshed
+
+**APIs Used:** Linear OAuth 2.0 + GraphQL API, Lua Data API
+
+**Perfect for:** Any service where each end user brings their own account (Linear, GitHub, and others)
+
+[View Demo →](./lua-linear-oauth) · [Guide](https://docs.heylua.ai/build/handle-oauth)
+
+---
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -311,6 +330,14 @@ lua-dev-examples/
 │   │   └── tools/
 │   │       └── HotelTool.ts     # 5 hotel tools
 │   ├── lua.skill.yaml
+│   └── README.md
+│
+├── lua-linear-oauth/             # OAuth handled by the agent
+│   ├── src/
+│   │   ├── index.ts             # Agent with the skill and the keep-alive job
+│   │   ├── lib/linear-oauth.ts  # Link, exchange, refresh, storage
+│   │   ├── skills/              # 4 tools: connect, finish, list teams, disconnect
+│   │   └── jobs/                # Token keep-alive job
 │   └── README.md
 │
 └── README.md                      # This file

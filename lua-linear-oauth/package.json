@@ -1,0 +1,19 @@
+{
+  "name": "lua-linear-oauth",
+  "version": "1.0.0",
+  "description": "An agent that runs an OAuth authorization-code flow itself: it sends the user a Linear authorize link, exchanges the code they paste back, and keeps the token alive with a scheduled job.",
+  "license": "ISC",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc --noEmit"
+  },
+  "dependencies": {
+    "lua-cli": "^3.41.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.9.2"
+  }
+}
