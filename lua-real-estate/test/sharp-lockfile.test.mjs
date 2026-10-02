@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
-const lock = JSON.parse(readFileSync(new URL("../package-lock.json", import.meta.url), "utf8"));
+const lock = JSON.parse(readFileSync("package-lock.json", "utf8"));
 const pkgs = lock.packages;
 
 const parse = (v) => v.split(".").map(Number);
@@ -32,7 +32,7 @@ test("@img/sharp-* platform packages are no longer at 0.34.5", () => {
 });
 
 test("package.json scopes the sharp override to @livekit/agents and keeps undici@6", () => {
-  const pj = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
+  const pj = JSON.parse(readFileSync("package.json", "utf8"));
   assert.deepEqual(pj.overrides["@livekit/agents"], { sharp: "^0.35.4" });
   assert.equal(pj.overrides["undici@6"], "^6.28.0");
 });
