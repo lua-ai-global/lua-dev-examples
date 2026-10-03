@@ -2,8 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
-const lock = JSON.parse(readFileSync(new URL('../package-lock.json', import.meta.url), 'utf8'));
-const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
+const lock = JSON.parse(readFileSync('package-lock.json', 'utf8'));
+const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
 
 const parse = (v) => v.split('.').map((n) => parseInt(n, 10));
 const cmp = (a, b) => {
