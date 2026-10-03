@@ -28,3 +28,17 @@ test("engines.node >=20.9.0 is declared in package.json and the lockfile root", 
   assert.equal(pkg.engines.node, ">=20.9.0");
   assert.equal(lock.packages[""].engines.node, ">=20.9.0");
 });
+
+test("sharp override uses npm's nested-object form, never the invalid '>' cascade key", () => {
+  assert.deepEqual(Object.keys(pkg.overrides).filter((k) => k.includes(">")), []);
+  assert.ok(!("@livekit/agents>sharp" in pkg.overrides));
+});
+
+test("lockfile resolves sharp only under @livekit/agents at 0.35.4, with no 0.34.5 sharp or @img entry", () => {
+  assert.equal(lock.packages["node_modules/@livekit/agents/node_modules/sharp"].version, "0.35.4");
+  assert.equal(lock.packages["node_modules/sharp"], undefined);
+  const stale = Object.entries(lock.packages).filter(
+    ([k, v]) => /(^|\/)node_modules\/(sharp|@img\/sharp-[^/]+)$/.test(k) && v.version === "0.34.5",
+  );
+  assert.deepEqual(stale.map(([k]) => k), []);
+});
