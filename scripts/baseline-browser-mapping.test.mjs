@@ -17,7 +17,9 @@ const PACKAGE_KEY = `node_modules/${PACKAGE_NAME}`;
 export const MIN_SAFE = [2, 11, 0];
 
 const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const SKIP_DIRS = new Set(['node_modules', '.git', 'lost+found']);
+const SKIP_DIRS = new Set(['node_modules', 'lost+found']);
+// Hidden directories (.git, scratch volumes, tool caches) never hold a lockfile we ship.
+const isSkipped = (name) => SKIP_DIRS.has(name) || name.startsWith('.');
 
 export function parseVersion(version) {
   const segments = String(version).split('.').map((s) => Number.parseInt(s, 10));
@@ -43,7 +45,7 @@ export function findLockfiles(root) {
   const found = [];
   const walk = (dir) => {
     for (const name of readdirSync(dir)) {
-      if (SKIP_DIRS.has(name)) continue;
+      if (isSkipped(name)) continue;
       const full = join(dir, name);
       let stat;
       try {
