@@ -1,9 +1,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
-const lock = JSON.parse(readFileSync(new URL("../package-lock.json", import.meta.url), "utf8"));
-const pkg = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
+const readJson = (name) => JSON.parse(readFileSync(join(process.cwd(), name), "utf8"));
+const lock = readJson("package-lock.json");
+const pkg = readJson("package.json");
 const sharpPaths = Object.keys(lock.packages).filter((k) => /(^|\/)node_modules\/sharp$/.test(k));
 
 test("every resolved node_modules/sharp is 0.35.4, never 0.34.5 or 0.35.5", () => {
