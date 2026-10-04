@@ -24,7 +24,7 @@ export class TrackPaymentsTool implements LuaTool {
         if (!record) {
           return { success: false, error: `Lease ${input.leaseId} not found.` };
         }
-        lease = record.data as NonNullable<typeof lease>;
+        lease = record.data;
       }
 
       // B6: Merge static payments with dynamically recorded payments from Data store
