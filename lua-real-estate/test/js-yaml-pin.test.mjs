@@ -6,7 +6,7 @@ import { join } from "node:path";
 // Regression for BAC-2131 (split from BAC-1683): lockfile-only bump of js-yaml
 // in lua-real-estate from 4.3.1 to >=4.3.2, within the existing override and
 // lua-cli range. Mirrors the convention of lua-shopping-assistant/test/sharp-pin.test.mjs
-// (introduced by changelog.d/BAC-768.md) and runs with `node --test test/`.
+// (introduced by changelog.d/BAC-768.md) and runs with `node --test test/js-yaml-pin.test.mjs` from lua-real-estate/.
 const readJson = (name) => JSON.parse(readFileSync(join(process.cwd(), name), "utf8"));
 const lock = readJson("package-lock.json");
 const pkg = readJson("package.json");
