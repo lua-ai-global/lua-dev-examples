@@ -23,7 +23,7 @@ explains each step; this README is how to run it.
 
 | Route | What it does |
 | --- | --- |
-| `GET /tickets?status=open` | Lists tickets with one status (`open` by default), newest first |
+| `GET /tickets?status=open` | Lists tickets with one status (`open` by default), newest first. Returns one page of up to 50; a larger list would add a `page` query parameter. |
 | `POST /tickets` | Opens a ticket. Body: `{ "title": "…", "priority": "low" \| "normal" \| "high" }` |
 | `POST /tickets/:id/close` | Closes a ticket and records who closed it. Body: `{ "note"?: "…" }` |
 

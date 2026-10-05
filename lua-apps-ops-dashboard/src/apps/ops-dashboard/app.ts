@@ -47,6 +47,8 @@ export default defineWebApp({
       responses: { 200: z.object({ items: z.array(Ticket) }) },
       handler: async ({ query }) => {
         // The schema fills in the default; `?? 'open'` is for the type checker.
+        // One page of 50: enough for a dashboard example. A larger list would take
+        // a `page` query parameter and pass it through.
         const page = await Data.get(COLLECTION, { status: query.status ?? 'open' }, 1, 50);
         const items = page.data.map(toTicket).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
         return { items };
@@ -77,7 +79,10 @@ export default defineWebApp({
       description: 'Closes a ticket and records who closed it',
       params: z.object({ id: z.string().min(1) }),
       body: z.object({ note: z.string().max(500).optional() }),
-      responses: { 404: z.object({ message: z.string() }) },
+      responses: {
+        204: z.undefined().describe('Closed; no body'),
+        404: z.object({ message: z.string() }),
+      },
       handler: async ({ params, body, auth }) => {
         try {
           await Data.getEntry(COLLECTION, params.id);
