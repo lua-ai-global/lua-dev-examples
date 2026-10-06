@@ -9,7 +9,7 @@ const addDocsLinkPostProcessor = new PostProcessor({
   description: "Adds relevant documentation links to responses",
   execute: async (
     user: UserDataInstance,
-    message: string,
+    message: unknown,
     response: string,
     channel: string
   ) => {

@@ -24,7 +24,7 @@ export default class SetReminderTool implements LuaTool {
   async execute(input: z.infer<typeof this.inputSchema>) {
     // Get Discord user ID from user profile (saved by analytics preprocessor)
     const user = await User.get();
-    const discordUserId = user.discordId;
+    const discordUserId = user?.discordId;
     
     if (!discordUserId) {
       return {
