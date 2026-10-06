@@ -1,0 +1,19 @@
+{
+  "name": "lua-apps-ops-dashboard",
+  "version": "1.0.0",
+  "description": "An agent with a web app: a ticket dashboard whose page lists, creates and closes tickets through typed routes that run in the Lua sandbox as the signed-in person.",
+  "license": "ISC",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc --noEmit"
+  },
+  "dependencies": {
+    "lua-cli": "^3.44.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.9.2"
+  }
+}

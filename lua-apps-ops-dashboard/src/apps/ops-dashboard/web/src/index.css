@@ -1,0 +1,3 @@
+@import '@lua-ai-global/ui/styles.css';
+/* Tailwind scans the design system's compiled components for the classes they use. */
+@source '../node_modules/@lua-ai-global/ui/dist';

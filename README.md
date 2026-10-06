@@ -4,7 +4,7 @@
 
 > Production-ready AI agent examples showcasing the Lua Platform capabilities
 
-This repository contains **4 complete, production-ready demo applications** Built with Lua CLI v3.13.0. Each demo showcases different platform features and real-world use cases.
+This repository contains complete, production-ready demo applications built with Lua CLI. Each demo showcases different platform features and real-world use cases.
 
 ---
 
@@ -120,6 +120,25 @@ This repository contains **4 complete, production-ready demo applications** Buil
 **Perfect for:** Any service where each end user brings their own account (Linear, GitHub, and others)
 
 [View Demo →](./lua-linear-oauth) · [Guide](https://docs.heylua.ai/build/handle-oauth)
+
+---
+
+### 7. 🖥️ [Ops dashboard — an agent with a web app](./lua-apps-ops-dashboard)
+**Agent:** Ops dashboard example
+**Use Case:** A ticket board the team opens in Lua Workspace or the admin console
+
+**Features:**
+- A **web app** on the agent with `defineWebApp`: a Vite + React page and typed routes
+- Routes run in the Lua sandbox as the signed-in person, validated with Zod
+- Lists, opens and closes tickets in a `Data` collection, recording who did it
+- The page calls the routes with `lua.api()` and follows the shell's theme
+- Runs locally with `lua apps dev`; goes live with the agent version that pins it
+
+**APIs Used:** Lua Apps (`defineWebApp`, `@lua-ai-global/app-client`), Lua Data API
+
+**Perfect for:** Internal tools and dashboards next to an agent
+
+[View Demo →](./lua-apps-ops-dashboard) · [Guide](https://docs.heylua.ai/build/apps/quickstart)
 
 ---
 
@@ -338,6 +357,14 @@ lua-dev-examples/
 │   │   ├── lib/linear-oauth.ts  # Link, exchange, refresh, storage
 │   │   ├── skills/              # 4 tools: connect, finish, list teams, disconnect
 │   │   └── jobs/                # Token keep-alive job
+│   └── README.md
+│
+├── lua-apps-ops-dashboard/       # Agent with a web app
+│   ├── src/
+│   │   ├── index.ts             # Agent with webApps
+│   │   └── apps/ops-dashboard/
+│   │       ├── app.ts           # defineWebApp: 3 typed routes over Data
+│   │       └── web/             # Vite + React page
 │   └── README.md
 │
 └── README.md                      # This file
