@@ -1,7 +1,7 @@
 {
-  "name": "lua-whatsapp-flow-otp",
+  "name": "lua-decisions-triage",
   "version": "1.0.0",
-  "description": "Minimal example showing how to send a WhatsApp Flow as an interactive OTP / verification form using the ::: flow component.",
+  "description": "A support agent for a small online shop that routes every message with typed decisions.",
   "license": "ISC",
   "type": "module",
   "main": "src/index.ts",
@@ -12,14 +12,11 @@
   },
   "dependencies": {
     "lua-cli": "^3.48.0",
-    "zod": "^3.24.1"
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
     "tsx": "^4.7.0",
     "typescript": "^5.9.2"
-  },
-  "overrides": {
-    "sharp": "^0.35.4"
   }
 }
