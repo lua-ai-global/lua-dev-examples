@@ -29,19 +29,20 @@ type Routing = {
   refused: string[];
 };
 
-function route(answers: Record<string, DecisionAnswer>): Routing {
+function route(answers: Partial<Record<string, DecisionAnswer>>): Routing {
   const { refund, team, frustration } = answers;
   const refused = Object.entries(answers)
-    .filter(([, answer]) => answer.type === 'refused')
+    .filter(([, answer]) => answer?.type === 'refused')
     .map(([name]) => name);
-  const refundOdds = refund.type === 'odds' ? refund.odds : null;
-  const confidentTeam = team.type === 'choice' && !team.uncertain ? team.choice : null;
-  const urgent = frustration.type === 'score' && !frustration.uncertain && frustration.level === 'angry';
+  const refundOdds = refund?.type === 'odds' ? refund.odds : null;
+  const confidentTeam = team?.type === 'choice' && !team.uncertain ? team.choice : null;
+  const urgent = frustration?.type === 'score' && !frustration.uncertain && frustration.level === 'angry';
+  const missing = [refund, team, frustration].some((answer) => answer === undefined);
   return {
     team: confidentTeam ?? 'general',
     refundOdds,
     urgent,
-    needsPerson: confidentTeam === null || urgent || refused.length > 0,
+    needsPerson: confidentTeam === null || urgent || refused.length > 0 || missing,
     refused,
   };
 }

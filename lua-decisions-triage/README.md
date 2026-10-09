@@ -53,7 +53,7 @@ You could ask a model to "reply with the team name" and parse the text. This exa
 
 ### The refund gate
 
-`refund-gate` runs before the agent on every message. It asks one question:
+`refund-gate` runs before the agent on every message. It asks one question, using the short form of `Decisions.ask`: the state first, then a single question, which resolves to that one answer instead of an `answers` map.
 
 ```typescript
 const refund = await Decisions.ask({ message: text }, Decisions.odds('Is the customer asking for a refund?'));
