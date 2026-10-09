@@ -142,6 +142,24 @@ This repository contains complete, production-ready demo applications built with
 
 ---
 
+### 8. 🧭 [Decisions triage — typed answers instead of prompts](./lua-decisions-triage)
+**Agent:** Sam
+**Use Case:** Route every customer message of a small shop to the right team
+
+**Features:**
+- `Decisions.ask` in a tool: a refund **odds** question, a team **choice** and a frustration **score**, each answer typed and checked before use
+- A **named decision** (`LuaDecision`) run from a webhook, with versions you can publish and roll back from the terminal or the dashboard
+- A **pre-processor** that hands clear refund requests to a person before the agent replies
+- `DecisionError` handling by code, so a timeout or an outage degrades to "a person will reply"
+
+**APIs Used:** Lua Decisions (`Decisions`, `LuaDecision`), Lua Data API
+
+**Perfect for:** Triage, routing, moderation and any yes-or-no, pick-one or how-much question in code
+
+[View Demo →](./lua-decisions-triage) · [Guide](https://docs.heylua.ai/reference/sdk/decisions)
+
+---
+
 ## 🚀 Quick Start
 
 ### Prerequisites
