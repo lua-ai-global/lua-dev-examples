@@ -1,0 +1,19 @@
+{
+  "name": "lua-shared-data-reader",
+  "version": "1.0.0",
+  "description": "Quotes prices from the organization's shared price book (reads an org-shared Data collection).",
+  "license": "ISC",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "lua-cli": "^3.50.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.9.2"
+  }
+}

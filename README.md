@@ -160,6 +160,24 @@ This repository contains complete, production-ready demo applications built with
 
 ---
 
+### 9. 📒 [Shared Data — two agents, one price book](./lua-shared-data)
+**Agents:** Pricing Desk (writer) and Sales Assistant (reader)
+**Use Case:** One agent maintains reference data that other agents of the same organization read
+
+**Features:**
+- `Data.shared(name)`: the `Data` methods on a collection shared across agents of one organization
+- An org admin names which agents may read and which may write, through the admin API
+- Exact lookups with a declared index and vector search over the shared entries
+- Error handling by code: `shared_data_forbidden`, `shared_data_test_session_write_refused`, `shared_data_unavailable_offline`
+
+**APIs Used:** Lua Data API (`Data.shared`), organization admin API
+
+**Perfect for:** Price books, catalogs, policies and any reference data several agents need
+
+[View Demo →](./lua-shared-data) · [Guide](https://docs.heylua.ai/reference/sdk/data)
+
+---
+
 ## 🚀 Quick Start
 
 ### Prerequisites
