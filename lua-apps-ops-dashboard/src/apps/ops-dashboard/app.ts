@@ -46,10 +46,9 @@ export default defineWebApp({
       query: z.object({ status: z.enum(['open', 'closed']).default('open') }),
       responses: { 200: z.object({ items: z.array(Ticket) }) },
       handler: async ({ query }) => {
-        // The schema fills in the default; `?? 'open'` is for the type checker.
         // One page of 50: enough for a dashboard example. A larger list would take
         // a `page` query parameter and pass it through.
-        const page = await Data.get(COLLECTION, { status: query.status ?? 'open' }, 1, 50);
+        const page = await Data.get(COLLECTION, { status: query.status }, 1, 50);
         const items = page.data.map(toTicket).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
         return { items };
       },
