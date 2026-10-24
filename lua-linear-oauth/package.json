@@ -9,7 +9,7 @@
     "build": "tsc --noEmit"
   },
   "dependencies": {
-    "lua-cli": "^3.57.0",
+    "lua-cli": "^3.58.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {
