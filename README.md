@@ -178,6 +178,26 @@ This repository contains complete, production-ready demo applications built with
 
 ---
 
+### 10. 🌐 [Browser Agent — pages, approvals, files and saved logins](./lua-browser-agent)
+**Agent:** Web helper
+**Use Case:** Read and work web pages in a real browser, on public demo sites that need no accounts
+
+**Features:**
+- Three named browsers (`LuaBrowser`) with their own rules: read-only, holds anything that submits, and files on
+- Every way in: `Browser.read` for one page, the step-by-step commands for known clicks, `Browser.execute` for a task in plain words
+- Every `stopReason` handled, including `confirmation_required` approved from the user's next message with `Browser.confirm`
+- `download`, `pdf` and `upload`, with the malware scan that holds a new file back
+- A **saved login**: `Secrets.request({ kind: 'browser-login' })` and `Browser.execute({ credentials })`, so the agent never sees a password
+- A **scheduled job** that reads a page with the cloud browser every morning
+
+**APIs Used:** Lua Browser (`Browser`, `LuaBrowser`), Lua Secrets (browser logins), Lua Data API
+
+**Perfect for:** Supplier portals, price and stock checks, dashboards behind a sign-in, anything with no API
+
+[View Demo →](./lua-browser-agent) · [Guide](https://docs.heylua.ai/build/use-the-browser)
+
+---
+
 ## 🚀 Quick Start
 
 ### Prerequisites
