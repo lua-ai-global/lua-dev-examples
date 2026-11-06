@@ -66,6 +66,8 @@ const config = {
   agentId: process.env.LUA_AGENT_ID!,
   apiUrl: process.env.LUA_API_URL || "https://api.heylua.ai",
   webhookUrl: process.env.LUA_WEBHOOK_URL || "https://webhook.heylua.ai",
+  // The new-member webhook's key (LUA_WEBHOOK_KEY_NEW_MEMBER in the agent's .lua/webhook-keys.env).
+  webhookKey: process.env.LUA_WEBHOOK_KEY,
 };
 
 // Validate required config
@@ -165,7 +167,10 @@ async function callWebhook(webhookName: string, data: any): Promise<any> {
   const url = `${config.webhookUrl}/${config.agentId}/${webhookName}`;
   try {
     const response = await axios.post(url, data, {
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        ...(config.webhookKey ? { "X-Lua-Key": config.webhookKey } : {}),
+      },
       timeout: 10000,
     });
     return response.data;
