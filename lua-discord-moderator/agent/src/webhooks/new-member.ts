@@ -5,10 +5,14 @@ import DiscordService from "../services/DiscordService";
 /**
  * Webhook triggered when a new member joins the Discord server.
  * Sends a welcome DM with getting started resources.
+ *
+ * Only the bot calls it, so it requires a key: the first `lua push` creates the key and saves it to
+ * `.lua/webhook-keys.env` as LUA_WEBHOOK_KEY_NEW_MEMBER. Give that value to the bot as LUA_WEBHOOK_KEY.
  */
 const newMemberWebhook = new LuaWebhook({
   name: "new-member",
   description: "Welcome new members to the Lua Discord community",
+  auth: "key",
   bodySchema: z.object({
     userId: z.string(),
     guildId: z.string(),

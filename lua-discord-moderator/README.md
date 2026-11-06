@@ -142,11 +142,14 @@ DISCORD_BOT_TOKEN=your_discord_bot_token
 LUA_AGENT_ID=your_agent_id
 LUA_API_URL=https://api.heylua.ai
 LUA_WEBHOOK_URL=https://webhook.heylua.ai
+LUA_WEBHOOK_KEY=the_new_member_webhook_key
 ASK_LUA_CHANNEL_NAME=ask-lua
 RESOLVED_TAG_NAME=Resolved
 ```
 
 > **Note:** No `LUA_API_KEY` needed! The bot uses session-based authentication with `x-session-id` header.
+
+> **The `new-member` webhook needs a key.** It is declared with `auth: "key"`, so it answers `401` to anyone without it. The first `lua push` from `agent/` creates the key and saves it to `agent/.lua/webhook-keys.env` (git-ignored) as `LUA_WEBHOOK_KEY_NEW_MEMBER`; put that value in the bot's `LUA_WEBHOOK_KEY`. The bot sends it as the `X-Lua-Key` header. Lost it? `lua webhooks rotate-key --webhook-name new-member` issues a new one, and the old one keeps working for 24 hours.
 
 Run locally:
 ```bash
@@ -165,7 +168,7 @@ Or deploy to Fly.io:
 ```bash
 cd bot
 fly launch
-fly secrets set DISCORD_BOT_TOKEN=xxx LUA_AGENT_ID=xxx
+fly secrets set DISCORD_BOT_TOKEN=xxx LUA_AGENT_ID=xxx LUA_WEBHOOK_KEY=xxx
 fly deploy
 ```
 
@@ -186,6 +189,7 @@ fly deploy
 | `LUA_AGENT_ID` | Your Lua agent ID |
 | `LUA_API_URL` | Lua API URL (default: https://api.heylua.ai) |
 | `LUA_WEBHOOK_URL` | Webhook URL (default: https://webhook.heylua.ai) |
+| `LUA_WEBHOOK_KEY` | The `new-member` webhook's key, from `agent/.lua/webhook-keys.env` |
 | `ASK_LUA_CHANNEL_NAME` | Channel name to monitor (default: ask-lua) |
 | `RESOLVED_TAG_NAME` | Forum tag name for resolved posts (default: Resolved) |
 
