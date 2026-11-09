@@ -1,4 +1,4 @@
-import { PostProcessor, UserDataInstance } from "lua-cli";
+import { PostProcessor, PostProcessorMessage, UserDataInstance } from "lua-cli";
 
 /**
  * PostProcessor that adds relevant documentation links to responses.
@@ -9,7 +9,7 @@ const addDocsLinkPostProcessor = new PostProcessor({
   description: "Adds relevant documentation links to responses",
   execute: async (
     user: UserDataInstance,
-    message: string,
+    message: PostProcessorMessage,
     response: string,
     channel: string
   ) => {
